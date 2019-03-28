@@ -34,7 +34,7 @@ gem 'jbuilder', '~> 2.5'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
-
+gem 'time_date_helpers', '0.0.2'
 gem 'validates_timeliness'
 gem 'will_paginate'
 gem 'simple_form'
