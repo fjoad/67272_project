@@ -11,42 +11,43 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :first_name %>
+  <div class="input-field">
+    <%= form.label :first_name, class: "active" %>
     <%= form.text_field :first_name %>
   </div>
 
-  <div class="field">
-    <%= form.label :last_name %>
+  <div class="input-field">
+    <%= form.label :last_name, class: "active" %>
     <%= form.text_field :last_name %>
   </div>
 
-  <div class="field">
-    <%= form.label :ssn %>
+  <div class="input-field">
+    <%= form.label :ssn, class: "active" %>
     <%= form.text_field :ssn %>
   </div>
 
-  <div class="field">
-    <%= form.label :date_of_birth %>
-    <%= form.text_field :date_of_birth %>
+  <div class="input-field">
+    <%= form.label :date_of_birth, class: "active" %>
+    <%= form.text_field :date_of_birth, prompt: "Date of Birth", class: "datepicker", :value =>(form.object.date_of_birth.strftime('%B %d, %Y') if form.object.date_of_birth != nil)%>
   </div>
 
-  <div class="field">
-    <%= form.label :phone %>
+  <div class="input-field">
+    <%= form.label :phone, class: "active" %>
     <%= form.text_field :phone %>
   </div>
 
-  <div class="field">
-    <%= form.label :role %>
-    <%= form.text_field :role %>
+  <div class="input-field">
+    <%= form.label :role, class: "active" %>
+    <%= form.select :role, %w[employee manager admin], :prompt => "Select..." %>
   </div>
 
-  <div class="field">
-    <%= form.label :active %>
-    <%= form.text_field :active %>
+  <div class="input-field">
+    <%= form.label :active, class: "active" %>
+    <%= form.select :active, options_for_select([['active', true], ['not active', false]]), :prompt => "Select One" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit :class=>"btn waves-effect waves-light" %>
+    <%= link_to 'Cancel', assignments_path, :class => 'waves-effect waves-light btn red' %>
   </div>
 <% end %>

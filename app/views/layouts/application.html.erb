@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>A&M Creamary</title>
+    <title>A&M Creamery</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -15,28 +15,24 @@
       <li><%= link_to "List Employees", employees_path %></li>
       <li><%= link_to "Add an Employee", new_employee_path %></li>
     </ul>
-    <ul id="dropdown1" class="dropdown-content">
+    <ul id="dropdown2" class="dropdown-content">
       <li><%= link_to "List Stores", stores_path %></li>
       <li><%= link_to "Add a Store", new_store_path %></li>
     </ul>
-    <ul id="dropdown1" class="dropdown-content">
+    <ul id="dropdown3" class="dropdown-content">
       <li><%= link_to "List Assignments", assignments_path %></li>
       <li><%= link_to "Add an Assignment", new_assignment_path %></li>
     </ul>
     <nav>
       <div class="nav-wrapper">
         &nbsp&nbsp
-        <a href="/" class="brand-logo">A&M Creamary</a>
+        <img id='logo' src="assets/AMCreamary_logo.PNG">
+        <a href="/" class="brand-logo">A&M Creamery</a>
         <ul class="right">
-          <li>
-            <%# link_to "Categories", categories_path %>
-          </li>
-          <!-- Only add this line if you did the work for the
-    categories controller -->
           <!-- Dropdown Trigger -->
           <li><a class="dropdown-button" href="/employees" data-activates="dropdown1">Employees<i class="material-icons right">arrow_drop_down</i></a></li>
-          <li><a class="dropdown-button" href="/stores" data-activates="dropdown1">Stores<i class="material-icons right">arrow_drop_down</i></a></li>
-          <li><a class="dropdown-button" href="/assignments" data-activates="dropdown1">Assignments<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="dropdown-button" href="/stores" data-activates="dropdown2">Stores<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="dropdown-button" href="/assignments" data-activates="dropdown3">Assignments<i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
       </div>
     </nav>

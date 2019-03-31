@@ -12,27 +12,27 @@
   <% end %>
 
   <div class="input-field">
-    <%= form.label :start_date %>
+    <%= form.label :start_date, class: "active" %>
     <%= form.text_field :start_date, prompt: "Start Date", class: "datepicker", :value =>(form.object.start_date.strftime('%B %d, %Y') if form.object.start_date != nil)%>
   </div>
 
   <div class="input-field">
-    <%= form.label :end_date %>
+    <%= form.label :end_date, class: "active" %>
     <%= form.text_field :end_date, prompt: "End Date", class: "datepicker", :value =>(form.object.end_date.strftime('%B %d, %Y') if form.object.end_date != nil)%>
   </div>
 
   <div class="input-field">
-    <%= form.label :pay_level %>
+    <%= form.label :pay_level, class: "active" %>
     <%= form.number_field :pay_level %>
   </div>
 
   <div class="input-field">
-    <%= form.label :store_id %><br/>
+    <%= form.label :store_id, class: "active" %>
     <%= form.collection_select :store_id, Store.active.alphabetical, :id, :name, :prompt => "Select One" %>
   </div>
 
   <div class="input-field">
-    <%= form.label :employee_id %><br/>
+    <%= form.label :employee_id, class: "active" %>
     <%= form.collection_select :employee_id, Employee.active.alphabetical, :id, :name, :prompt => "Select One" %>
   </div>
 

@@ -21,7 +21,7 @@
         <td><%= assignment.end_date %></td>
         <td><%= assignment.pay_level %></td>
         <td><%= assignment.store.name %></td>
-        <td><%= assignment.employee.first_name %></td>
+        <td><%= assignment.employee.first_name + " " + assignment.employee.last_name %></td>
         <td><%= link_to 'Show', assignment, :class=> "waves-effect waves-light btn green" %></td>
         <td><%= link_to 'Edit', edit_assignment_path(assignment), :class=> "waves-effect waves-light btn light-blue" %></td>
         <td><%= link_to 'Destroy', assignment, method: :delete, data: { confirm: 'Are you sure?' }, :class=> "waves-effect waves-light btn red" %></td>
@@ -29,6 +29,11 @@
     <% end %>
   </tbody>
 </table>
+<br/>
+<!-- Add the pagination using will_paginate gem -->
+<span class="paginate">
+<%= will_paginate @assignments, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+</span>
 
 <br>
 

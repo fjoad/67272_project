@@ -26,13 +26,18 @@
         <td><%= employee.phone %></td>
         <td><%= employee.role %></td>
         <td><%= employee.active %></td>
-        <td><%= link_to 'Show', employee %></td>
-        <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
-        <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', employee, :class=> "waves-effect waves-light btn green" %></td>
+        <td><%= link_to 'Edit', edit_employee_path(employee), :class=> "waves-effect waves-light btn light-blue" %></td>
+        <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }, :class=> "waves-effect waves-light btn red" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<br/>
+<!-- Add the pagination using will_paginate gem -->
+<span class="paginate">
+<%= will_paginate @employees, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+</span>
 
 <br>
 

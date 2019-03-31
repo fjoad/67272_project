@@ -2,8 +2,15 @@
  left:1%;
  right: auto !important;
 }
+#logo {
+ height: 100%;
+ width: 5%;
+}
+
 $table-striped-color: #cfd8dc; 
-$primary-color: #FFC107; 
+$primary-color: #f762ad; 
 $button-height: 26px;
+
+
 @import "materialize";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
