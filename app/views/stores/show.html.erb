@@ -1,49 +1,42 @@
-<p id="notice"><%= notice %></p>
+      <table class="highlight">
+        <tr>
+          <th>Name:</th>
+          <td><%= @store.name %></td>
+        </tr>
+        <tr>
+          <th>Street:</th>
+          <td><%= @store.street %></td>
+        </tr>
+        <tr>
+          <th>City: </th>
+          <td><%= @store.city %></td>
+        </tr>
+        <tr>
+          <th>State: </th>
+          <td><%= @store.state %></td>
+        </tr>
+        <tr>
+          <th>Zip: </th>
+          <td><%= @store.zip %></td>
+        </tr>
+        <tr>
+          <th>Phone: </th>
+          <td><%= @store.phone %></td>
+        </tr>
+        <tr>
+          <th>Latitude: </th>
+          <td><%= @store.latitude %></td>
+        </tr>
+        <tr>
+          <th>Longitude: </th>
+          <td><%= @store.longitude %></td>
+        </tr>
+        <tr>
+          <th>Active: </th>
+          <td><%= if @store.active then "Active" else "Not Active" end %></td>
+        </tr>
+      </table>
 
-<p>
-  <strong>Name:</strong>
-  <%= @store.name %>
-</p>
+<%= link_to 'Edit', edit_store_path(@store), :class=>"btn waves-effect waves-light btn blue" %> |
+<%= link_to 'Back', stores_path, :class => 'waves-effect waves-light btn red' %>
 
-<p>
-  <strong>Street:</strong>
-  <%= @store.street %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @store.city %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @store.state %>
-</p>
-
-<p>
-  <strong>Zip:</strong>
-  <%= @store.zip %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @store.phone %>
-</p>
-
-<p>
-  <strong>Latitude:</strong>
-  <%= @store.latitude %>
-</p>
-
-<p>
-  <strong>Longitude:</strong>
-  <%= @store.longitude %>
-</p>
-
-<p>
-  <strong>Active:</strong>
-  <%= @store.active %>
-</p>
-
-<%= link_to 'Edit', edit_store_path(@store) %> |
-<%= link_to 'Back', stores_path %>

@@ -1,39 +1,29 @@
-<p id="notice"><%= notice %></p>
+      <table class="highlight">
+        <tr>
+          <th>Name:</th>
+          <td><%= @employee.first_name + " " + @employee.last_name %></td>
+        </tr>
+        <tr>
+          <th>SSN:</th>
+          <td><%= @employee.ssn %></td>
+        </tr>
+        <tr>
+          <th>Phone: </th>
+          <td><%= @employee.phone %></td>
+        </tr>
+        <tr>
+          <th>Date of Birth: </th>
+          <td><%= @employee.date_of_birth %></td>
+        </tr>
+        <tr>
+          <th>Role: </th>
+          <td><%= @employee.role %></td>
+        </tr>
+        <tr>
+          <th>Active: </th>
+          <td><%= if @employee.active then "Active" else "Not Active" end %></td>
+        </tr>
+      </table>
 
-<p>
-  <strong>First name:</strong>
-  <%= @employee.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @employee.last_name %>
-</p>
-
-<p>
-  <strong>Ssn:</strong>
-  <%= @employee.ssn %>
-</p>
-
-<p>
-  <strong>Date of birth:</strong>
-  <%= @employee.date_of_birth %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @employee.phone %>
-</p>
-
-<p>
-  <strong>Role:</strong>
-  <%= @employee.role %>
-</p>
-
-<p>
-  <strong>Active:</strong>
-  <%= @employee.active %>
-</p>
-
-<%= link_to 'Edit', edit_employee_path(@employee) %> |
-<%= link_to 'Back', employees_path %>
+<%= link_to 'Edit', edit_employee_path(@employee), :class=>"btn waves-effect waves-light btn blue" %> |
+<%= link_to 'Back', employees_path, :class => 'waves-effect waves-light btn red' %>

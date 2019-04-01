@@ -1,29 +1,25 @@
-<p id="notice"><%= notice %></p>
+      <table class="highlight">
+        <tr>
+          <th>Start date:</th>
+          <td><%= @assignment.start_date %></td>
+        </tr>
+        <tr>
+          <th>End date:</th>
+          <td><%= if @assignment.end_date.nil? then "This assignment is ongoing" else @assignment.end_date end %></td>
+        </tr>
+        <tr>
+          <th>Pay Level: </th>
+          <td><%= @assignment.pay_level %></td>
+        </tr>
+        <tr>
+          <th>Store: </th>
+          <td><%= @assignment.store.name %></td>
+        </tr>
+        <tr>
+          <th>Employee: </th>
+          <td><%= @assignment.employee.first_name + " " + @assignment.employee.last_name %></td>
+        </tr>
+      </table>
 
-<p>
-  <strong>Start date:</strong>
-  <%= @assignment.start_date %>
-</p>
-
-<p>
-  <strong>End date:</strong>
-  <%= @assignment.end_date %>
-</p>
-
-<p>
-  <strong>Pay level:</strong>
-  <%= @assignment.pay_level %>
-</p>
-
-<p>
-  <strong>Store:</strong>
-  <%= @assignment.store.name %>
-</p>
-
-<p>
-  <strong>Employee:</strong>
-  <%= @assignment.employee.first_name + " " + @assignment.employee.last_name %>
-</p>
-
-<%= link_to 'Edit', edit_assignment_path(@assignment) %> |
-<%= link_to 'Back', assignments_path %>
+<%= link_to 'Edit', edit_assignment_path(@assignment), :class=>"btn waves-effect waves-light btn blue" %> |
+<%= link_to 'Back', assignments_path, :class => 'waves-effect waves-light btn red' %>
