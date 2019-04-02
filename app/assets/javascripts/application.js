@@ -21,6 +21,7 @@ $( document ).ready(function () {
  Materialize.updateTextFields();
  $('.materialboxed').materialbox();
  $('.parallax').parallax();
+ $('.sidenav').sidenav();
   });
   
 $('.parallax').parallax();
@@ -41,6 +42,7 @@ $('select').material_select({
 $(".dropdown-button").dropdown({ 
     belowOrigin: true
 }); 
+$('.sidenav').sidenav();
 
 
 

@@ -28,31 +28,26 @@
     <nav>
       <div class="nav-wrapper">
         &nbsp&nbsp
+        <a href="#" class="sidenav-trigger" data-target="mobile-nav"></a>
         <img id='logo' src="assets/AMCreamary_logo_eddited.png">
         <a href="/" class="brand-logo">A&M Creamery</a>
         <ul class="right">
           <!-- Dropdown Trigger -->
-          <li><a class="dropdown-button" href="/employees" data-activates="dropdown1">Employees<i class="material-icons right">arrow_drop_down</i></a></li>
-          <li><a class="dropdown-button" href="/stores" data-activates="dropdown2">Stores<i class="material-icons right">arrow_drop_down</i></a></li>
-          <li><a class="dropdown-button" href="/assignments" data-activates="dropdown3">Assignments<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="dropdown-button" href="/employees" data-activates="dropdown1"><i class="material-icons left">account_circle</i>Employees<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="dropdown-button" href="/stores" data-activates="dropdown2"><i class="material-icons left">account_balance</i>Stores<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="dropdown-button" href="/assignments" data-activates="dropdown3"><i class="material-icons left">assignment</i>Assignments<i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
       </div>
     </nav>
   <div class="row">
-    <div class="col s8 center">
+    <div class="col s12 center">
       <!-- MAIN CONTENT GOES HERE -->
       <%= yield %>
-    </div>
-    <div class="col s1">
-    </div>
-    <div class="col s3">
-      <!-- SIDEBAR CONTENT GOES HERE -->
-      <%= render partial: 'partials/quick_links' %>
     </div>
   </div>
   <footer>
     <div class="row">
-      <div class="col s8 center">
+      <div class="col s12 center">
         <%= render partial: 'partials/footer' %>
       </div>
     </div>
