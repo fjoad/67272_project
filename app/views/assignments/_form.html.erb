@@ -1,3 +1,4 @@
+<!--base assignment form -->
 <%= form_with(model: assignment, local: true) do |form| %>
   <% if assignment.errors.any? %>
     <div id="error_explanation">
@@ -11,9 +12,10 @@
     </div>
   <% end %>
 
+  <!-- use datepicker for start and end -->
   <div class="input-field">
     <%= form.label :start_date, class: "active" %>
-    <%= form.text_field :start_date, class: "datepicker"%>
+    <%= form.text_field :start_date, prompt: "Start Date", class: "datepicker", :value =>(form.object.end_date.strftime('%B %d, %Y') if form.object.end_date != nil)%>
   </div>
 
   <div class="input-field">
@@ -21,11 +23,13 @@
     <%= form.text_field :end_date, prompt: "End Date", class: "datepicker", :value =>(form.object.end_date.strftime('%B %d, %Y') if form.object.end_date != nil)%>
   </div>
 
+  <!-- number picker for pay level -->
   <div class="input-field">
     <%= form.label :pay_level, class: "active" %>
     <%= form.number_field :pay_level %>
   </div>
 
+  <!-- dropdowns for store and employee -->
   <div class="input-field">
     <%= form.label :store_id, class: "active" %>
     <%= form.collection_select :store_id, Store.active.alphabetical, :id, :name, :prompt => "Select One" %>

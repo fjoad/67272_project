@@ -1,6 +1,36 @@
 {
   "MiniTest": {
     "coverage": {
+      "/home/ubuntu/workspace/phase3_starter/app/controllers/page_controller.rb": [
+        1,
+        1,
+        null,
+        null
+      ],
+      "/home/ubuntu/workspace/phase3_starter/app/controllers/application_controller.rb": [
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/phase3_starter/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/phase3_starter/app/helpers/assignments_helper.rb": [
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/phase3_starter/app/helpers/employees_helper.rb": [
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/phase3_starter/app/helpers/page_helper.rb": [
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/phase3_starter/app/helpers/stores_helper.rb": [
+        1,
+        null
+      ],
       "/home/ubuntu/workspace/phase3_starter/app/models/store.rb": [
         1,
         null,
@@ -181,37 +211,8 @@
         null,
         null
       ],
-      "/home/ubuntu/workspace/phase3_starter/app/controllers/page_controller.rb": [
-        1,
-        1,
-        null,
-        null
-      ],
-      "/home/ubuntu/workspace/phase3_starter/app/controllers/application_controller.rb": [
-        1,
-        null
-      ],
-      "/home/ubuntu/workspace/phase3_starter/app/helpers/application_helper.rb": [
-        1,
-        null
-      ],
-      "/home/ubuntu/workspace/phase3_starter/app/helpers/assignments_helper.rb": [
-        1,
-        null
-      ],
-      "/home/ubuntu/workspace/phase3_starter/app/helpers/employees_helper.rb": [
-        1,
-        null
-      ],
-      "/home/ubuntu/workspace/phase3_starter/app/helpers/page_helper.rb": [
-        1,
-        null
-      ],
-      "/home/ubuntu/workspace/phase3_starter/app/helpers/stores_helper.rb": [
-        1,
-        null
-      ],
       "/home/ubuntu/workspace/phase3_starter/app/controllers/assignments_controller.rb": [
+        null,
         0,
         0,
         null,
@@ -462,6 +463,6 @@
         0
       ]
     },
-    "timestamp": 1554202227
+    "timestamp": 1554226761
   }
 }
