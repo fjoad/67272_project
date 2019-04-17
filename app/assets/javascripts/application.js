@@ -18,18 +18,7 @@
 
 //some javascript not working in the documnet ready due to turbolinks clash
 $( document ).ready(function () {
- Materialize.updateTextFields(); //used so text fields dont clash in edit 
- $('.materialboxed').materialbox(); //used for images
- $('.parallax').parallax(); //used on the mainpage for the parallax images 
- $('.sidenav').sidenav(); //sidenav activator, not working
-});
-  
-
-//these functions only work outside of the document ready, likely due to version clashes and turbolinks
-
-//datepicker
-$('.parallax').parallax();
- $('.datepicker').pickadate({
+     $('.datepicker').pickadate({
  format: 'mmmm dd, yyyy',
  formatSubmit: 'mmmm dd, yyyy',
  selectMonths: true, // Creates a dropdown to control month
@@ -39,16 +28,37 @@ $('.parallax').parallax();
  close: 'Ok',
  closeOnSelect: false // Close upon selecting a date,
 });
+    
+    $('select').material_select({
+  //belowOrigin: true
+});
+
+
+
+
+
+ Materialize.updateTextFields(); //used so text fields dont clash in edit 
+ $('.materialboxed').materialbox(); //used for images
+ $('.parallax').parallax(); //used on the mainpage for the parallax images 
+});
+  
+
+//these functions only work outside of the document ready, likely due to version clashes and turbolinks
+
+//datepicker
 
 //dropdown for form  
-$('select').material_select({
-  belowOrigin: true
-});
+
 
 //dropdown for navbar
 $(".dropdown-button").dropdown({ 
     belowOrigin: true
 }); 
+
+$('select').formSelect();
+
+
+
 
 
 

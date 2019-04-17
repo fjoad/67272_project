@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :users
+  resources :jobs
+  resources :shifts
+  resources :flavors
   get 'page/mainpage'
     resources :stores
     resources :employees
