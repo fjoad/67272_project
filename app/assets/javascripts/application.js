@@ -18,7 +18,7 @@
 
 //some javascript not working in the documnet ready due to turbolinks clash
 $( document ).ready(function () {
-     $('.datepicker').pickadate({
+     $('.datepicker').datepicker({
  format: 'mmmm dd, yyyy',
  formatSubmit: 'mmmm dd, yyyy',
  selectMonths: true, // Creates a dropdown to control month
@@ -28,10 +28,13 @@ $( document ).ready(function () {
  close: 'Ok',
  closeOnSelect: false // Close upon selecting a date,
 });
-    
-    $('select').material_select({
-  //belowOrigin: true
-});
+    $('select').formSelect();
+   $(".dropdown-button").dropdown({
+       coverTrigger: false
+   });
+   $(".dropdown-trigger").dropdown({
+       coverTrigger: false
+   });
 
 
 
@@ -45,17 +48,10 @@ $( document ).ready(function () {
 
 //these functions only work outside of the document ready, likely due to version clashes and turbolinks
 
-//datepicker
-
-//dropdown for form  
+$('.parallax').parallax(); 
 
 
-//dropdown for navbar
-$(".dropdown-button").dropdown({ 
-    belowOrigin: true
-}); 
 
-$('select').formSelect();
 
 
 

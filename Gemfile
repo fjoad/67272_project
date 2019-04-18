@@ -38,8 +38,8 @@ gem 'time_date_helpers', '0.0.2'
 gem 'validates_timeliness'
 gem 'will_paginate'
 gem 'simple_form'
-gem 'materialize-sass'
 gem 'jquery-rails'
+gem 'materialize-sass'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
