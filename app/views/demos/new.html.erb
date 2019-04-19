@@ -1,0 +1,39 @@
+<div class="container col s12 center">
+    <div class="container">
+        <%= form_for(:demo, url: demos_path) do |f| %>
+        <h2 id="heading">Login to the HUB</h2>
+        <table border="0" cellspacing="5" cellpadding="5">
+            <tr valign="top">
+          		<td>
+          		    <div class="input-field">
+                        <%= f.label :email, :class=> "active heading" %>
+                        <%= f.text_field :email %>
+                    </div>
+                    
+                    <div class="input-field">
+                        <%= f.label :password, :class=>"validate active heading" %>
+                        <%= f.password_field :password %>
+                    </div>
+                    
+                    <div class="input-field">
+                        <%= f.label :Employee_id, :class=>"validate active heading" %>
+                        <%= f.text_field :Employee_id %>
+                    </div>
+                    
+                    <div class="row center-align">
+                        <%= f.radio_button :role, 'professor', class: "with-gap", type: "radio" %> 
+                        <%= f.label :role, 'Professor', :value => 'professor' %>
+                        <%= f.radio_button :role, 'student', class: "with-gap", type: "radio" %>
+                        <%= f.label :role, 'Student', :value => 'student' %>
+                    </div>
+                    
+                    <div class="actions center-align">
+                        <%= f.submit "Login", class: "waves-effect waves-red deep-orange darken-4 hoverable btn white-text" %>
+                    </div>
+                    
+                    <% end %>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

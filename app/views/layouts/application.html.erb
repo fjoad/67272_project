@@ -42,7 +42,19 @@
   <div class="row">
     <div class="center">
       <!-- MAIN CONTENT GOES HERE -->
+      <!-- flash messages -->
+          <% if logged_in? %>
+      <%= link_to "logout", logout_path %>
+    <% else %>
+      <%= link_to "login", login_path %>
+    <% end %>
+      
+<%= javascript_include_tag "application" %>
+ <% flash.each do |message_type, message| %>
+ <%= message %>
+ <% end %>
       <%= yield %>
+      <%= debug(params) if Rails.env.development? %>
     </div>
   </div>
   <footer>
@@ -53,9 +65,5 @@
     </div>
   </footer>
 </body>
-<!-- flash messages -->
-<%= javascript_include_tag "application" %>
- <% flash.each do |message_type, message| %>
- <%= javascript_tag "Materialize.toast('#{message}', 4000)" %>
- <% end %>
+
 </html>
