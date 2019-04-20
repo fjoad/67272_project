@@ -8,7 +8,10 @@
     <%= f.input :start_time %>
     <%= f.input :end_time %>
     <%= f.input :notes %>
-    <%= f.association :Assignment %>
+    <div class="input-field">
+      <%= f.label :Assignment_id, class: "active" %>
+      <%= f.collection_select :Assignment_id, Assignment.chronological, :id, :id, :prompt => "Select One" %>
+    </div>
   </div>
 
   <div class="form-actions">
