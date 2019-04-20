@@ -1,10 +1,13 @@
 class Assignment < ApplicationRecord
 # Callbacks
   before_create :end_previous_assignment
+  after_rollback :delete_on_terminate
+  before_destroy :terminate_or_destroy_assignment
   
   # Relationships
   belongs_to :employee
   belongs_to :store
+  has_many :shifts
   
   # Validations
   validates_numericality_of :pay_level, only_integer: true, greater_than: 0, less_than: 7
@@ -50,6 +53,32 @@ class Assignment < ApplicationRecord
     all_active_stores = Store.active.all.map{|s| s.id}
     unless all_active_stores.include?(self.store_id)
       errors.add(:store_id, "is not an active store at the creamery")
+    end
+  end
+  
+  def delete_shifts
+    self.shifts.upcoming.each do |shift|
+      shift.delete
+    end
+  end
+  
+  def delete_on_terminate
+    if self.end_date <= Date.today
+      delete_shifts
+    end
+  end
+  
+  def terminate_assignment
+    self.update_attribute(:end_date, Date.today)
+  end
+  
+  def terminate_or_destroy_assignment
+    shifts = self.shifts.past
+    if !shifts.nil?
+      terminate_assignment
+      return false 
+    else
+      return true
     end
   end
 end

@@ -2,10 +2,13 @@ class Employee < ApplicationRecord
  # Callbacks
   before_save :reformat_phone
   before_validation :reformat_ssn
+  before_destroy :emp_delete
   
   # Relationships
   has_many :assignments
   has_many :stores, through: :assignments
+  has_many :shifts, through: :assignments
+  has_one :user, dependent: :destroy
   
   # Validations
   validates_presence_of :first_name, :last_name, :date_of_birth, :ssn, :role
@@ -66,6 +69,36 @@ class Employee < ApplicationRecord
      ssn = self.ssn.to_s      # change to string in case input as all numbers 
      ssn.gsub!(/[^0-9]/,"")   # strip all non-digits
      self.ssn = ssn           # reset self.ssn to new string
+   end
+   
+   def delete_assignment
+    assignment = self.assignments.current.first
+    if !assignment.nil?
+      self.assignment.current.first.delete
+    end
+   end
+   
+   def emp_inactive 
+    self.update_attribute(:active, false)
+   end
+   
+   def terminate_assignment
+    assignment = self.assignments.current.first
+    if !assignment.nil?
+      assignment.update_attribute(:end_date, Date.today)
+    end
+   end
+   
+   def emp_delete
+     shifts = Shift.for_employee(self.id)
+     if shifts.nil?
+       delete_assignment
+       return true
+     else
+      emp_inactive 
+      terminate_assignment
+      return false
+     end
    end
 end
 
