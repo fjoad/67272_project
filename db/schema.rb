@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_17_235608) do
+ActiveRecord::Schema.define(version: 2019_04_21_213317) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer "store_id"
@@ -50,12 +50,12 @@ ActiveRecord::Schema.define(version: 2019_04_17_235608) do
   end
 
   create_table "shift_jobs", force: :cascade do |t|
-    t.integer "Job_id"
-    t.integer "Shift_id"
+    t.integer "shift_id"
+    t.integer "job_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["Job_id"], name: "index_shift_jobs_on_Job_id"
-    t.index ["Shift_id"], name: "index_shift_jobs_on_Shift_id"
+    t.index ["job_id"], name: "index_shift_jobs_on_job_id"
+    t.index ["shift_id"], name: "index_shift_jobs_on_shift_id"
   end
 
   create_table "shifts", force: :cascade do |t|
@@ -95,10 +95,10 @@ ActiveRecord::Schema.define(version: 2019_04_17_235608) do
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
-    t.integer "Employee_id"
+    t.integer "employee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["Employee_id"], name: "index_users_on_Employee_id"
+    t.index ["employee_id"], name: "index_users_on_employee_id"
   end
 
 end

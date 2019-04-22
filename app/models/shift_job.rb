@@ -1,8 +1,4 @@
 class ShiftJob < ApplicationRecord
-  belongs_to :Job
-  belongs_to :Shift
-end
-class ShiftJob < ApplicationRecord
-  belongs_to :Job
-  belongs_to :Shift
+  belongs_to :shift
+  belongs_to :job
 end
