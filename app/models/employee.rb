@@ -60,7 +60,7 @@ class Employee < ApplicationRecord
   after_rollback :make_inactive, :terminate_assignment, :delete_future_shifts
   
   
-  before_destroy do 
+  def check_destroy_status
     if worked_shift?
       #do something, cannot delete 
       self.errors.add(:base, 'cannot delete this employee')
@@ -91,7 +91,7 @@ class Employee < ApplicationRecord
    def delete_assignment
     assignment = self.assignments.current.first
     if !assignment.nil?
-      self.assignment.current.first.delete
+      self.assignments.current.first.delete
     end
    end
    
@@ -109,7 +109,7 @@ class Employee < ApplicationRecord
    def delete_future_shifts
     future_shifts = Shift.for_employee(self.id).upcoming
    end
-  
 end
+   
 
 

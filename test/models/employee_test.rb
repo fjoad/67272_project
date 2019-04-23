@@ -73,15 +73,15 @@ class EmployeeTest < ActiveSupport::TestCase
     end
     
     # test scope younger_than_18
-    should "show there are four employees over 18" do
-      assert_equal 4, Employee.is_18_or_older.size
-      assert_equal ["Gruberman", "Heimann", "Janeway", "Sisko"], Employee.is_18_or_older.map{|e| e.last_name}.sort
+    should "show there are five employees over 18" do
+      assert_equal 5, Employee.is_18_or_older.size
+      assert_equal ["Gruberman", "Heimann", "Janeway", "Joad", "Sisko"], Employee.is_18_or_older.map{|e| e.last_name}.sort
     end
     
     # test the scope 'active'
-    should "shows that there are five active employees" do
-      assert_equal 5, Employee.active.size
-      assert_equal ["Crawford", "Gruberman", "Heimann", "Janeway", "Sisko"], Employee.active.map{|e| e.last_name}.sort
+    should "shows that there are six active employees" do
+      assert_equal 6, Employee.active.size
+      assert_equal ["Crawford", "Gruberman", "Heimann", "Janeway", "Joad", "Sisko"], Employee.active.map{|e| e.last_name}.sort
     end
     
     # test the scope 'inactive'
@@ -97,9 +97,9 @@ class EmployeeTest < ActiveSupport::TestCase
     end
     
     # test the scope 'managers'
-    should "shows that there are 2 managers: Ben and Kathryn" do
-      assert_equal 2, Employee.managers.size
-      assert_equal ["Janeway", "Sisko"], Employee.managers.map{|e| e.last_name}.sort
+    should "shows that there are 3 managers: Ben and Kathryn" do
+      assert_equal 3, Employee.managers.size
+      assert_equal ["Janeway", "Joad", "Sisko"], Employee.managers.map{|e| e.last_name}.sort
     end
     
     # test the scope 'admins'

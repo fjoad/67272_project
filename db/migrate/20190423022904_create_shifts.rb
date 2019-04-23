@@ -5,7 +5,7 @@ class CreateShifts < ActiveRecord::Migration[5.2]
       t.time :start_time
       t.time :end_time
       t.text :notes
-      t.references :Assignment, foreign_key: true
+      t.references :assignment, foreign_key: true
 
       t.timestamps
     end

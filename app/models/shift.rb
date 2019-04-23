@@ -3,13 +3,13 @@ class Shift < ApplicationRecord
   after_create :end_time_change 
   before_destroy :check_destroy_status
     
-  belongs_to :Assignment
-  has_one :employee, through: :Assignment
-  has_one :store, through: :Assignment
+  belongs_to :assignment
+  has_one :employee, through: :assignment
+  has_one :store, through: :assignment
   has_many :shift_jobs
   has_many :jobs, through: :shift_jobs
   
-  validates_presence_of :date, :start_time, :Assignment_id
+  validates_presence_of :date, :start_time, :assignment_id
   #validates_time :end_time, :after => :start_time, allow_blank: true
   #validates_date :date, :on_or_after => Date.current
   
@@ -44,7 +44,7 @@ class Shift < ApplicationRecord
   
   def current_assignment_only
     assignments = Assignment.current.map{|assignment| assignment.id}
-    if assignments.include?(self.Assignment_id)
+    if assignments.include?(self.assignment_id)
       #can be added, do nothing   
       #return true
     else

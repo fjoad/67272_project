@@ -1,4 +1,4 @@
 class StoreFlavor < ApplicationRecord
-  belongs_to :Store
-  belongs_to :Flavor
+  belongs_to :store
+  belongs_to :flavor
 end
