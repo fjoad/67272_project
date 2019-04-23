@@ -64,14 +64,6 @@ class Shift < ApplicationRecord
     end
   end
   
-  def deleted
-    if self.date >= Date.current 
-        return true
-    else
-        return false
-    end
-  end
-  
   def end_time_change 
     self.update_attribute(:end_time, self.start_time + 3.hours)
   end

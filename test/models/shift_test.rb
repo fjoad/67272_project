@@ -13,9 +13,9 @@ class ShiftTest < ActiveSupport::TestCase
   
   context "Creating context for shift" do
   	setup do
-  	  #@ed = FactoryBot.create(:employee)
-  	  #@cmu = FactoryBot.create(:store)
-  	  #@generic_assign = FactoryBot.create(:assignment, store: @cmu, employee: @ed, start_date: 3.months.ago.to_date, end_date: nil)
+  	  #@joad = FactoryBot.create(:employee, first_name: "Joad", last_name: "Test", ssn: "872-63-5421", date_of_birth: 20.years.ago.to_date, phone: "949-786-4786", role: "admin", active: true )
+  	  #@cmuq = FactoryBot.create(:store, name: "CMUQ", state: "PA", zip: "92606")
+  	  #@generic_assign = FactoryBot.create(:assignment, store: @cmuq, employee: @joad)
   	  create_employees
   	  create_stores
   	  create_assignments
@@ -23,9 +23,9 @@ class ShiftTest < ActiveSupport::TestCase
     end
     
     teardown do
-      #@ed.destroy
-      #@cmu.destroy
       #@generic_assign.destroy
+      #@joad.destroy
+      #@cmuq.destroy
       remove_shifts
       remove_assignments
       remove_stores
@@ -114,6 +114,67 @@ class ShiftTest < ActiveSupport::TestCase
       @test_janitor = FactoryBot.create(:job)
       @shift_past_janitor = FactoryBot.create(:shift_job, shift: @past_shift, job: @test_janitor)
       assert_equal [1, 2], Shift.for_employee(2).map{|shift| shift.id}.sort
+    end
+    
+    should "have scope for past that works" do
+      @past_shift = FactoryBot.create(:shift, assignment: @promote_ben, date: Date.today - 100.days)
+      assert_equal [3], Shift.past.map{|shift| shift.id}.sort
+      @past_shift.destroy
+    end
+    
+    should "have a scope upcoming that works" do
+      assert_equal [1,2], Shift.upcoming.map{|shift| shift.id}.sort
+    end
+    
+    should "have a scope for_next_days that works" do
+      assert_equal [1], Shift.for_next_days(3).map{|shift| shift.id}.sort
+      assert_equal [1,2], Shift.for_next_days(6).map{|shift| shift.id}.sort
+    end
+    
+    should "have a scope for_past_days that works" do
+      @past_shift = FactoryBot.create(:shift, assignment: @promote_ben, date: Date.today - 100.days)
+      assert_equal [], Shift.for_past_days(6).map{|shift| shift.id}.sort
+      @past_shift.destroy
+    end
+    
+    should "have a scope chronological that works" do
+      @past_shift = FactoryBot.create(:shift, assignment: @promote_ben, date: Date.today - 100.days)
+      assert_equal [3, 1, 2], Shift.chronological.map{|shift| shift.id}
+      @past_shift.destroy
+    end
+    
+    should "have a scope by_store that works" do
+      @store = FactoryBot.create(:store, name: "store", phone: "182-331-4321")
+      @faaiz = FactoryBot.create(:employee, first_name: "Faaiz", last_name: "Joad", ssn: "453-67-6125", date_of_birth: 20.years.ago.to_date)
+      @assignment = FactoryBot.create(:assignment, store: @store, employee: @faaiz, start_date: 4.months.ago.to_date, end_date: nil)
+      @past_shift = FactoryBot.create(:shift, assignment: @assignment, date: Date.today - 100.days)
+      assert_equal [1, 2, 3], Shift.by_store.map{|shift| shift.id}
+      @past_shift.destroy      
+      @assignment.destroy
+      @store.destroy
+      @faaiz.destroy
+    end
+    
+    should "have a scope by_employee that works" do
+      @store = FactoryBot.create(:store, name: "store", phone: "182-331-4321")
+      @faaiz = FactoryBot.create(:employee, first_name: "Faaiz", last_name: "Joad", ssn: "453-67-6125", date_of_birth: 20.years.ago.to_date)
+      @assignment = FactoryBot.create(:assignment, store: @store, employee: @faaiz, start_date: 4.months.ago.to_date, end_date: nil)
+      @past_shift = FactoryBot.create(:shift, assignment: @assignment, date: Date.today - 100.days)
+      assert_equal [1, 2, 3], Shift.by_employee.map{|shift| shift.id}
+      @past_shift.destroy      
+      @assignment.destroy
+      @store.destroy
+      @faaiz.destroy
+    end
+    
+    should "not allow shift to be added to past assignment" do
+      @store = FactoryBot.create(:store, name: "store", phone: "182-331-4321")
+      @faaiz = FactoryBot.create(:employee, first_name: "Faaiz", last_name: "Joad", ssn: "453-67-6125", date_of_birth: 20.years.ago.to_date)
+      @assignment = FactoryBot.create(:assignment, store: @store, employee: @faaiz, start_date: 4.months.ago.to_date, end_date: 2.months.ago.to_date)
+      assert_raise(Exception) {FactoryBot.create(:shift, assignment: @assignment, date: Date.today - 100.days)}
+      @assignment.destroy
+      @store.destroy
+      @faaiz.destroy
     end
     
   end
