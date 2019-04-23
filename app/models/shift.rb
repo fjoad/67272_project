@@ -77,4 +77,5 @@ class Shift < ApplicationRecord
   end
   
   
+  
 end

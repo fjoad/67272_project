@@ -158,5 +158,25 @@ class EmployeeTest < ActiveSupport::TestCase
       assert_equal 17, @cindy.age
       assert_equal 30, @kathryn.age
     end
+    
+    should "show that an employee is only deleted if he works no shifts" do
+      @cmu = FactoryBot.create(:store)
+      @faaiz2 = FactoryBot.create(:employee, first_name: "testFaaiz", last_name: "testJoad", ssn: "134-35-9822", date_of_birth: 19.years.ago.to_date)
+      @assignment_faaiz = FactoryBot.create(:assignment, employee: @faaiz2, store: @cmu, start_date: 6.months.ago.to_date, end_date: nil, pay_level: 6)
+      @faaiz2.destroy
+      assert @faaiz2.destroyed?
+      @cmu.destroy
+    end
+    
+    should "show that an employee is not deleted if he work shifts" do
+      @cmu = FactoryBot.create(:store)
+      @assignment_faaiz = FactoryBot.create(:assignment, employee: @faaiz, store: @cmu, start_date: 6.months.ago.to_date, end_date: nil, pay_level: 6)
+      @shift = FactoryBot.create(:shift, assignment: @assignment_faaiz)
+      @future_shift = FactoryBot.create(:shift, assignment: @assignment_faaiz, date: Date.today + 10.days)
+      assert @faaiz.worked_shift?
+      @faaiz.destroy
+      assert !@faaiz.destroyed?
+      @cmu.destroy
+    end 
   end
 end

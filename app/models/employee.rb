@@ -58,6 +58,8 @@ class Employee < ApplicationRecord
   
   before_destroy :check_destroy_status
   after_rollback :make_inactive, :terminate_assignment, :delete_future_shifts
+  #after_destroy :delete_assignment
+  
   
   
   def check_destroy_status
@@ -73,7 +75,7 @@ class Employee < ApplicationRecord
   
   def worked_shift?
     shifts = Shift.for_employee(self.id)
-    shifts.nil?
+    shifts.to_a.size > 0
   end
   
    #private
