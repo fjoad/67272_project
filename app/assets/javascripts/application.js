@@ -18,6 +18,8 @@
 
 //some javascript not working in the documnet ready due to turbolinks clash
 $( document ).ready(function () {
+    $('.sidenav').sidenav();
+    $('.dropdown-trigger').dropdown();
      $('.datepicker').datepicker({
  format: 'mmmm dd, yyyy',
  formatSubmit: 'mmmm dd, yyyy',

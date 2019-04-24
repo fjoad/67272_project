@@ -45,5 +45,13 @@ class UserTest < ActiveSupport::TestCase
       assert @test.destroyed?
       assert @test_user.destroyed?
     end
+    
+    should "make sure user_role function works" do
+      @employee = FactoryBot.build(:employee, first_name: "test", last_name: "user", ssn: "123-67-8236", phone: "949-675-2317", role: "manager")
+      @user = FactoryBot.build(:user, email:"test@cmu.edu", employee: @employee) 
+      assert_equal "manager", @user.user_role
+      @user.destroy
+      @employee.destroy
+    end
   end
 end

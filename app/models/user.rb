@@ -17,4 +17,8 @@ class User < ApplicationRecord
     end
   end
   
+  def user_role 
+    self.employee.role
+  end
+  
 end
