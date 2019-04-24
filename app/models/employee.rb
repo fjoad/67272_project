@@ -109,7 +109,9 @@ class Employee < ApplicationRecord
    end
    
    def delete_future_shifts
-    future_shifts = Shift.for_employee(self.id).upcoming
+    Shift.for_employee(self.id).upcoming.each do |shift|
+        shift.delete
+    end
    end
 end
    

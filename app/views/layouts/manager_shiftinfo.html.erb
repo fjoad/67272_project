@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>A&M Creamery</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+<title>Manager Page</title>
+  <body>
+    
+
+    <!-- Navbar goes here -->
+  <nav>
+    <div class="nav-wrapper">
+      &nbsp&nbsp
+      <a href="#" class="sidenav-trigger" data-target="mobile-nav"></a>
+      <img id='logo' src="assets/AMCreamary_logo_eddited.png">
+      <a href="/" class="brand-logo">A&M Creamery</a>
+      <ul class="right">
+        <!-- Dropdown Trigger -->
+        <li><a class="dropdown-trigger" href="/employees" data-target="dropdown1"><i class="material-icons left">account_circle</i>Employees<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-trigger" href="/stores" data-target="dropdown2"><i class="material-icons left">account_balance</i>Stores<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-trigger" href="/assignments" data-target="dropdown3"><i class="material-icons left">assignment</i>Assignments<i class="material-icons right">arrow_drop_down</i></a></li>
+      </ul>
+
+     <!-- Dropdown Structure -->
+  <ul id="dropdown1" class="dropdown-content">
+    <li>
+      <%= link_to "List Employees", employees_path %>
+    </li>
+    <li>
+      <%= link_to "Add an Employee", new_employee_path %>
+    </li>
+  </ul>
+  <ul id="dropdown2" class="dropdown-content">
+    <li>
+      <%= link_to "List Stores", stores_path %>
+    </li>
+    <li>
+      <%= link_to "Add a Store", new_store_path %>
+    </li>
+  </ul>
+  <ul id="dropdown3" class="dropdown-content">
+    <li>
+      <%= link_to "List Assignments", assignments_path %>
+    </li>
+    <li>
+      <%= link_to "Add an Assignment", new_assignment_path %>
+    </li>
+  </ul>
+</div>
+  </nav>
+
+    <div class="row" style="height:100%">
+    <div class="col s2 left teal lighten-2" style="height:100%">
+    <a href="">link</a>
+    </div>
+      <div class="col s10 right teal lighten-2" style="height:100%">
+        <!-- Teal page content  -->
+          <!-- MAIN CONTENT GOES HERE -->
+              <h1>Shift Info</h1>
+              
+            <!--Find all the employees that work at the same store as the manager-->
+              <% user = User.find(session[:user_id]) %>    
+              <% manager = Employee.find(user.employee.id) %>
+              <% manager_assignments = Assignment.for_employee(manager) %>
+              <% manager_stores = Array.new  %>
+              <% manager_assignments.each do |assignment| %>
+                  <% manager_stores << Store.find(assignment.store_id) %>
+              <% end %>
+              <% assignments_store = Array.new %>
+              <% manager_stores.each do |store| %>
+                  <% assignments_store << Assignment.for_store(store) %>
+              <% end %>
+              <% employees_all = Array.new %>
+              <% assignments_store.each do |assignment| %>
+                  <% puts "Assignment_id:"%>
+                  <% puts "#{assignment.id}"  %>
+                  <% employees_all << Employee.find(assignment.employee_id) %>
+              <% end %>    
+              <% employees_regulars = Array.new %>
+              <% employees_all.each do |employee| %>
+                  <% if employee.role == 'employee' %>
+                      <% employees_regulars << employee %>
+                  <% end %>
+              <% end %>
+              
+            <!--Now make the table  -->
+            <table class="striped">
+              <thead>
+                <tr>
+                  <th>First name</th>
+                  <th>Last name</th>
+                  <th>Ssn</th>
+                  <th>Date of birth</th>
+                  <th>Phone</th>
+                  <th>Role</th>
+                  <th>Active</th>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
+            
+              <tbody>
+                <% employees_regulars.each do |employee| %>
+                  <tr>
+                    <td><%= employee.first_name %></td>
+                    <td><%= employee.last_name %></td>
+                    <td><%= employee.ssn %></td>
+                    <td><%= employee.date_of_birth %></td>
+                    <td><%= employee.phone %></td>
+                    <td><%= employee.role %></td>
+                    <td><%= employee.active %></td>
+                    <td><%= link_to 'Show', employee, :class=> "waves-effect waves-light btn green" %></td>
+                    <td><%= link_to 'Edit', edit_employee_path(employee), :class=> "waves-effect waves-light btn light-blue" %></td>
+                    <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }, :class=> "waves-effect waves-light btn red" %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    
+
+    
+  <footer class="page-footer col s12 center" style="position:fixed;bottom:0;width:100%; padding:0">
+        <%= render partial: 'partials/footer' %>
+
+  </footer>
+</body>
+
+
+              <%= javascript_include_tag "application" %>
+           <% flash.each do |message_type, message| %>
+           <%= message %>
+           <% end %>
+           
+</html>

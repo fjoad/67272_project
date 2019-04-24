@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'manager_shift_info/index'
   get 'employee_page/index'
   get 'manager_page/index'
   get 'admin_page/index'
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
   get 'page/mainpage'
   get 'admin_page/index'
   get 'manager_page/index'
+  get 'manager_shift_info/index'
   get 'employee_page/index'
   resources :stores
   resources :employees

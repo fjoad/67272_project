@@ -1,10 +1,83 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
   <head>
-    <meta charset="utf-8">
-    <title>Manager Page</title>
+    <title>A&M Creamery</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+<title>Manager Page</title>
   <body>
-    <h1>Welcome to the Manager Page!</h1>
-  </body>
+    
+
+    <!-- Navbar goes here -->
+  <nav>
+    <div class="nav-wrapper">
+      &nbsp&nbsp
+      <a href="#" class="sidenav-trigger" data-target="mobile-nav"></a>
+      <img id='logo' src="assets/AMCreamary_logo_eddited.png">
+      <a href="/" class="brand-logo">A&M Creamery</a>
+      <ul class="right">
+        <!-- Dropdown Trigger -->
+        <li><a class="dropdown-trigger" href="/employees" data-target="dropdown1"><i class="material-icons left">account_circle</i>Employees<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-trigger" href="/stores" data-target="dropdown2"><i class="material-icons left">account_balance</i>Stores<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-trigger" href="/assignments" data-target="dropdown3"><i class="material-icons left">assignment</i>Assignments<i class="material-icons right">arrow_drop_down</i></a></li>
+      </ul>
+
+     <!-- Dropdown Structure -->
+  <ul id="dropdown1" class="dropdown-content">
+    <li>
+      <%= link_to "List Employees", employees_path %>
+    </li>
+    <li>
+      <%= link_to "Add an Employee", new_employee_path %>
+    </li>
+  </ul>
+  <ul id="dropdown2" class="dropdown-content">
+    <li>
+      <%= link_to "List Stores", stores_path %>
+    </li>
+    <li>
+      <%= link_to "Add a Store", new_store_path %>
+    </li>
+  </ul>
+  <ul id="dropdown3" class="dropdown-content">
+    <li>
+      <%= link_to "List Assignments", assignments_path %>
+    </li>
+    <li>
+      <%= link_to "Add an Assignment", new_assignment_path %>
+    </li>
+  </ul>
+</div>
+  </nav>
+
+    <div class="row" style="height:100%">
+    <div class="col s2 left teal lighten-2" style="height:100%">
+    <a href="">link</a>
+    </div>
+      <div class="col s10 right teal lighten-2" style="height:100%">
+        <!-- Teal page content  -->
+          <!-- MAIN CONTENT GOES HERE -->
+              <h1>Manager Page</h1>
+
+      </div>
+    </div>
+    
+
+    
+  <footer class="page-footer col s12 center" style="position:fixed;bottom:0;width:100%; padding:0">
+        <%= render partial: 'partials/footer' %>
+
+  </footer>
+</body>
+
+
+              <%= javascript_include_tag "application" %>
+           <% flash.each do |message_type, message| %>
+           <%= message %>
+           <% end %>
+           
 </html>

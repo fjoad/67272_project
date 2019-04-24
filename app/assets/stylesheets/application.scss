@@ -10,6 +10,14 @@
  width: 4%;
 }
 
+html, body {
+ padding:0 !important;
+ margin:0 !important;
+ height:100%
+ !important;
+}
+
+
 $table-striped-color: #cfd8dc; 
 $primary-color: #f762ad; 
 $button-height: 26px;
