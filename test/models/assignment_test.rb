@@ -137,5 +137,9 @@ class AssignmentTest < ActiveSupport::TestCase
       @shift.destroy
       @assignment.destroy
     end
+    
+    should "get the correct name for an assignment" do
+      assert_equal "Ed Gruberman, CMU", @assign_ed.assignment_name
+    end
   end
 end

@@ -34,7 +34,11 @@
     <div class="input-field">
       <%= f.label :assignment_id, class: "active" %>
       <!--<%= f.collection_select :assignment_id, Assignment.chronological, :id, :id, :prompt => "Select One" %>-->
-      <%= f.select(:assignment_id, assignment_for_select, :prompt => 'Select') %>
+      <%  if session[:role] == 'manager' %>
+        <%= f.select(:assignment_id, assignment_for_select(session[:user_id]), :prompt => 'Select') %>
+      <% else %>
+        <%= f.select(:assignment_id, assignment_for_select, :prompt => 'Select') %>
+      <% end %>
     </div>
   </div>
 

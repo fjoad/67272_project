@@ -1,6 +1,7 @@
 module DemosHelper
     def login(user)
         session[:user_id] = user.id
+        session[:role] = user.employee.role
     end
     
     def current_user
@@ -17,7 +18,7 @@ module DemosHelper
     
     def logout
         session.delete(:user_id)
-        #session.delete(:role)
+        session.delete(:role)
         @current_user = nil
     end
 end
