@@ -1,16 +1,40 @@
 
 <%= simple_form_for(@shift) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <% if shift.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(shift.errors.count, "error") %> prohibited this shift from being saved:</h2>
+
+      <ul>
+      <% shift.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <div class="form-inputs">
-    <%= f.input :date %>
-    <%= f.input :start_time %>
-    <%= f.input :end_time %>
+        <!-- use datepicker-->
+    <div class="input-field">
+      <%= f.label :date, class: "active" %>
+      <%= f.text_field :date, prompt: "Date", class: "datepicker", :value =>(f.object.date.strftime('%B %d, %Y') if f.object.date != nil)%>
+    </div>
+    
+    <!-- use timepicker -->
+    <div class="input-field">
+      <%= f.label :start_time, class: "active" %>
+      <%= f.text_field :start_time, prompt: "Time", class: "timepicker", :value =>(f.object.start_time.strftime('%B %d, %Y') if f.object.start_time != nil)%>
+    </div>
+    
+    <div class="input-field">
+      <%= f.label :end_time, class: "active" %>
+      <%= f.text_field :end_time, prompt: "Time", class: "timepicker", :value =>(f.object.end_time.strftime('%B %d, %Y') if f.object.end_time != nil)%>
+    </div>
+    
     <%= f.input :notes %>
     <div class="input-field">
-      <%= f.label :Assignment_id, class: "active" %>
-      <%= f.collection_select :Assignment_id, Assignment.chronological, :id, :id, :prompt => "Select One" %>
+      <%= f.label :assignment_id, class: "active" %>
+      <!--<%= f.collection_select :assignment_id, Assignment.chronological, :id, :id, :prompt => "Select One" %>-->
+      <%= f.select(:assignment_id, assignment_for_select, :prompt => 'Select') %>
     </div>
   </div>
 

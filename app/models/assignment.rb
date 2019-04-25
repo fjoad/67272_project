@@ -29,8 +29,13 @@ class Assignment < ApplicationRecord
   scope :for_pay_level, ->(pay_level) { where("pay_level = ?", pay_level) }
   scope :for_role,      ->(role) { joins(:employee).where("role = ?", role) }
 
+
+
+  def assignment_name
+    self.employee.first_name + " " + self.employee.last_name + ", " + self.store.name
+  end
   # Private methods for callbacks and custom validations
-  private  
+  private
   
   def end_previous_assignment
     current_assignment = Employee.find(self.employee_id).current_assignment

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'admin_page/index'
   get 'manager_page/index'
   get 'manager_shift_info/index'
+  get 'manager_assignment_info/index'
   get 'employee_page/index'
   resources :stores
   resources :employees

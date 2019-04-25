@@ -15,7 +15,7 @@
   <!-- use datepicker for start and end -->
   <div class="input-field">
     <%= form.label :start_date, class: "active" %>
-    <%= form.text_field :start_date, prompt: "Start Date", class: "datepicker", :value =>(form.object.end_date.strftime('%B %d, %Y') if form.object.end_date != nil)%>
+    <%= form.text_field :start_date, prompt: "Start Date", class: "datepicker", :value =>(form.object.start_date.strftime('%B %d, %Y') if form.object.start_date != nil)%>
   </div>
 
   <div class="input-field">
