@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_23_022904) do
+ActiveRecord::Schema.define(version: 2019_04_25_124452) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer "store_id"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 2019_04_23_022904) do
     t.integer "pay_level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "controllers", force: :cascade do |t|
+    t.string "StoreFlavor"
+    t.integer "store_id"
+    t.integer "flavor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["flavor_id"], name: "index_controllers_on_flavor_id"
+    t.index ["store_id"], name: "index_controllers_on_store_id"
   end
 
   create_table "employees", force: :cascade do |t|
@@ -45,6 +55,12 @@ ActiveRecord::Schema.define(version: 2019_04_23_022904) do
     t.string "name"
     t.text "description"
     t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "loginpages", force: :cascade do |t|
+    t.string "index"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

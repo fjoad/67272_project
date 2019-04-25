@@ -2,6 +2,33 @@
 
 <h1>Employees</h1>
 
+<!--Find all the employees that work at the same store as the manager-->
+<% user = User.find(session[:user_id]) %>    
+<% manager = Employee.find(user.employee.id) %>
+<% manager_assignments = Assignment.for_employee(manager) %>
+<% manager_stores = Array.new  %>
+<% manager_assignments.each do |assignment| %>
+    <% manager_stores << Store.find(assignment.store_id) %>
+<% end %>
+<% assignments_store = Array.new %>
+<% manager_stores.each do |store| %>
+    <% assignments_store << Assignment.for_store(store) %>
+<% end %>
+<% employees_all = Array.new %>
+<% assignments_store.each do |assignment_relation| %>
+    <% assignment_relation.each do |assignment| %>
+        <% puts "Assignment_id:"%>
+        <% puts "#{assignment.id}"  %>
+        <% employees_all << Employee.find(assignment.employee_id) %>
+    <% end %>
+<% end %>    
+<% employees_regulars = Array.new %>
+<% employees_all.each do |employee| %>
+    <% if employee.role == 'employee' %>
+        <% employees_regulars << employee %>
+    <% end %>
+<% end %>
+
 <table class="striped">
   <thead>
     <tr>
@@ -17,7 +44,12 @@
   </thead>
 
   <tbody>
-    <% @employees.each do |employee| %>
+    <% if session[:role] == 'manager' %>
+    <% else %>
+      <% employees_regulars = Employee.all %>
+    <% end %>
+    
+    <% employees_regulars.each do |employee| %>
       <tr>
         <td><%= employee.first_name %></td>
         <td><%= employee.last_name %></td>
@@ -26,9 +58,11 @@
         <td><%= employee.phone %></td>
         <td><%= employee.role %></td>
         <td><%= employee.active %></td>
-        <td><%= link_to 'Show', employee, :class=> "waves-effect waves-light btn green" %></td>
-        <td><%= link_to 'Edit', edit_employee_path(employee), :class=> "waves-effect waves-light btn light-blue" %></td>
-        <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }, :class=> "waves-effect waves-light btn red" %></td>
+        <% if session[:role] == 'admin' %>
+          <td><%= link_to 'Show', employee, :class=> "waves-effect waves-light btn green" %></td>
+          <td><%= link_to 'Edit', edit_employee_path(employee), :class=> "waves-effect waves-light btn light-blue" %></td>
+          <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }, :class=> "waves-effect waves-light btn red" %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

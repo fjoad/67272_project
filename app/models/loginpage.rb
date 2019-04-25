@@ -1,0 +1,2 @@
+class Loginpage < ApplicationRecord
+end

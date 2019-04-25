@@ -1,0 +1,2 @@
+module GuestFlavorStoreHelper
+end

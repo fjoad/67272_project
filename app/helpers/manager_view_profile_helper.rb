@@ -1,0 +1,2 @@
+module ManagerViewProfileHelper
+end

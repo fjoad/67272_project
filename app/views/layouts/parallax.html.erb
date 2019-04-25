@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>A&M Creamery</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    
+    
+    <!-- Navbar goes here -->
+  <nav>
+    <div class="nav-wrapper">
+      &nbsp&nbsp
+      <a href="#" class="sidenav-trigger" data-target="mobile-nav"></a>
+      <img id='logo' src="assets/AMCreamary_logo_eddited.png">
+      <a href="#" class="brand-logo">A&M Creamery</a>
+      <ul class="right">
+        <!-- Dropdown Trigger -->
+          <% if !session[:user_id]  %>
+            <% loglink = loginpages_path %>
+            <% log = "Login" %> 
+          <% else %>
+            <% loglink = logout_path  %>
+            <% log = "Logout" %> 
+          <% end %>
+      </ul>
+
+     <!-- Dropdown Structure -->
+  <ul id="dropdown1" class="dropdown-content">
+    <li>
+      <%= link_to "List Employees", employees_path %>
+    </li>
+    <li>
+      <%= link_to "Add an Employee", new_employee_path %>
+    </li>
+  </ul>
+  <ul id="dropdown2" class="dropdown-content">
+    <li>
+      <%= link_to "List Stores", stores_path %>
+    </li>
+    <li>
+      <%= link_to "Add a Store", new_store_path %>
+    </li>
+  </ul>
+  <ul id="dropdown3" class="dropdown-content">
+    <li>
+      <%= link_to "List Assignments", assignments_path %>
+    </li>
+    <li>
+      <%= link_to "Add an Assignment", new_assignment_path %>
+    </li>
+  </ul>
+</div>
+  </nav>
+    <div class="container">
+    <div class="row" style="height:100%">
+      <div class="col s12 center" style="height:100%">
+        <!-- Teal page content  -->
+          <!-- MAIN CONTENT GOES HERE -->
+          
+          <h2 class="header">Our Commitment to Diversity and Inclusion</h2>
+              
+              
+              
+              <p class="grey-text text-darken-3 lighten-3">We provide equal employment opportunities without regard to race, color, creed, sex, age, disability, religion, national origin, marital status, ancestry, 
+                      sexual orientation, veteran status, citizenship status, pregnancy, medical condition, or any other protected status in accordance with the requirements of all federal, state and local laws. 
+                      This applies to all areas of employment, including hiring, training and development, promotion, transfer, compensation, and all other conditions and privileges of employment.</p>
+              
+              
+              
+              
+                      <h2 class="header">Our Core Values</h2>
+                      <ul style="list-style-type:square">
+                          <li>1. Do the Right Thing</li>
+                          <li>2. Be the Best...Be #1</li>
+                          <li>3. Bring Out the Best in Our People</li>
+                          <li>4. Profit by Making People Happy</li>
+                          <li>5. Win as a Team</li>
+                      </ul>
+              
+              
+              
+                      <p class="grey-text text-darken-3 lighten-3">We foster a work environment through collaboration and partnerships that increase employee engagement, 
+                      strengthen our business relationships, encourage innovation, influence multicultural markets and make A&M Creamery the Ultimate Ice Cream Experience for everybody!</p>
+                        
+
+
+        </div>
+    </div>
+    </div>
+    
+
+    
+  <footer class="page-footer col s12 center" style="position:fixed;bottom:0;width:100%; padding:0">
+        <%= render partial: 'partials/footer' %>
+
+  </footer>
+</body>
+
+
+              <%= javascript_include_tag "application" %>
+           <% flash.each do |message_type, message| %>
+           <%= message %>
+           <% end %>
+           
+</html>

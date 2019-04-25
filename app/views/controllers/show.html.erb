@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Storeflavor:</strong>
+  <%= @controller.StoreFlavor %>
+</p>
+
+<p>
+  <strong>Store:</strong>
+  <%= @controller.store %>
+</p>
+
+<p>
+  <strong>Flavor:</strong>
+  <%= @controller.flavor %>
+</p>
+
+<%= link_to 'Edit', edit_controller_path(@controller) %> |
+<%= link_to 'Back', controllers_path %>

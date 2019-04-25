@@ -2,6 +2,8 @@
 
 <h1>Flavors</h1>
 
+<div class="container">
+
 <table>
   <thead>
     <tr>
@@ -16,14 +18,22 @@
       <tr>
         <td><%= flavor.name %></td>
         <td><%= flavor.active %></td>
-        <td><%= link_to 'Show', flavor %></td>
-        <td><%= link_to 'Edit', edit_flavor_path(flavor) %></td>
-        <td><%= link_to 'Destroy', flavor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if session[:role]  %>
+          <% if session[:role] == 'admin' %>
+            <td><%= link_to 'Show', flavor %></td>
+            <td><%= link_to 'Edit', edit_flavor_path(flavor) %></td>
+            <td><%= link_to 'Destroy', flavor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+</div>
 <br>
-
-<%= link_to 'New Flavor', new_flavor_path %>
+<% if session[:role]  %>
+  <% if session[:role] == 'admin' %>
+    <%= link_to 'New Flavor', new_flavor_path %>
+  <% end %>
+<% end %>

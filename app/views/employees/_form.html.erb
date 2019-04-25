@@ -10,6 +10,9 @@
       </ul>
     </div>
   <% end %>
+  
+  <% if session[:role] != 'admin'  %>
+  <% end  %>
 
   <div class="input-field">
     <%= form.label :first_name, class: "active" %>
@@ -23,7 +26,11 @@
 
   <div class="input-field">
     <%= form.label :ssn, class: "active" %>
-    <%= form.text_field :ssn %>
+    <% if session[:role] != 'admin'  %>
+      <%= form.text_field :ssn, disabled: true %>
+    <% else  %>
+      <%= form.text_field :ssn %>
+    <% end  %>
   </div>
 
   <div class="input-field">
@@ -56,6 +63,10 @@
 
   <div class="actions">
     <%= form.submit :class=>"btn waves-effect waves-light" %>
-    <%= link_to 'Cancel', employees_path, :class => 'waves-effect waves-light btn red' %>
+    <% if session[:role] == 'employee'  %>
+      <%= link_to 'Cancel', employee_page_index_path, :class => 'waves-effect waves-light btn red' %>
+    <% else  %>
+      <%= link_to 'Cancel', employees_path, :class => 'waves-effect waves-light btn red' %>
+    <% end %>
   </div>
 <% end %>

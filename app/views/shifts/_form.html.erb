@@ -12,37 +12,40 @@
     </div>
   <% end %>
 
-  <div class="form-inputs">
-        <!-- use datepicker-->
+  <div class="input-field">
+  <!--the active class prevents the field label overlapping with the field data-->
+	<%= f.label :date, :class=> "active heading" %>
+	<%= f.text_field :date, prompt: "Start Date", class: "datepicker", :value => (f.object.date.strftime('%B %d, %Y') if f.object.date != nil)%>
+  </div>
+  
+  <div class="input-field">
+	<%= f.label :start_time, :class=> "active heading" %>
+	<%= f.text_field :start_time, prompt: "Start Time", class: "timepicker", :value =>(f.object.start_time.strftime("%I:%m %p") if f.object.start_time != nil)%>
+    </div>
+  
+  <div class="input-field">
+	<%= f.label :end_time, :class=> "active heading" %>
+	<%= f.text_field :end_time, prompt: "End Time", class: "timepicker", :value =>(f.object.end_time.strftime("%I:%m %p") if f.object.end_time != nil)%>
+    </div>
+  
     <div class="input-field">
-      <%= f.label :date, class: "active" %>
-      <%= f.text_field :date, prompt: "Date", class: "datepicker", :value =>(f.object.date.strftime('%B %d, %Y') if f.object.date != nil)%>
+      <%= f.label :notes, :class=> "active heading" %>
+      <%= f.text_field :notes %>
     </div>
     
-    <!-- use timepicker -->
-    <div class="input-field">
-      <%= f.label :start_time, class: "active" %>
-      <%= f.text_field :start_time, prompt: "Time", class: "timepicker", :value =>(f.object.start_time.strftime('%B %d, %Y') if f.object.start_time != nil)%>
-    </div>
-    
-    <div class="input-field">
-      <%= f.label :end_time, class: "active" %>
-      <%= f.text_field :end_time, prompt: "Time", class: "timepicker", :value =>(f.object.end_time.strftime('%B %d, %Y') if f.object.end_time != nil)%>
-    </div>
-    
-    <%= f.input :notes %>
-    <div class="input-field">
-      <%= f.label :assignment_id, class: "active" %>
-      <!--<%= f.collection_select :assignment_id, Assignment.chronological, :id, :id, :prompt => "Select One" %>-->
-      <%  if session[:role] == 'manager' %>
-        <%= f.select(:assignment_id, assignment_for_select(session[:user_id]), :prompt => 'Select') %>
-      <% else %>
-        <%= f.select(:assignment_id, assignment_for_select, :prompt => 'Select') %>
-      <% end %>
-    </div>
+  <div class="input-field">
+    <%= f.label :assignment_id, class: "active" %>
+    <%  if session[:role] == 'manager' %>
+      <%= f.select(:assignment_id, assignment_for_select_for_manager(session[:user_id]), :prompt => 'Select') %>
+    <% else %>
+      <%= f.select(:assignment_id, assignment_for_select_for_admin, :prompt => 'Select') %>
+    <% end %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+
+  <div class="actions">
+    <%= f.submit :class=>"btn waves-effect waves-light" %>
+    <%= link_to 'Cancel', shifts_path, :class => 'waves-effect waves-light btn red' %>
   </div>
+</div>
 <% end %>

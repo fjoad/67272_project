@@ -2,6 +2,50 @@
 
 <h1>Assignments</h1>
 
+<!--Find all the employees that work at the same store as the manager-->
+<% user = User.find(session[:user_id]) %>    
+<% manager = Employee.find(user.employee.id) %>
+<% manager_assignments = Assignment.for_employee(manager) %>
+<% manager_stores = Array.new  %>
+<% manager_assignments.each do |assignment| %>
+    <% manager_stores << Store.find(assignment.store_id) %>
+<% end %>
+<% assignments_store = Array.new %>
+<% manager_stores.each do |store| %>
+    <% assignments_store << Assignment.for_store(store) %>
+<% end %>
+<% employees_all = Array.new %>
+<% assignments_store.each do |assignment_relation| %>
+    <% assignment_relation.each do |assignment| %>
+        <% puts "Assignment_id:"%>
+        <% puts "#{assignment.id}"  %>
+        <% employees_all << Employee.find(assignment.employee_id) %>
+    <% end %>
+<% end %>    
+<% employees_regulars = Array.new %>
+<% employees_all.each do |employee| %>
+    <% if employee.role == 'employee' %>
+        <% employees_regulars << employee %>
+    <% end %>
+<% end %>
+
+<!--Now get all the assignments for these employees  -->
+<% assignments_employees_stores = Array.new %>
+<% employees_regulars.each do |employee| %>
+  <% manager_stores.each do |store| %>
+      <% assignments_employees_stores << Assignment.for_store(store).for_employee(employee) %>
+  <% end %>
+<% end %>
+
+<% all_assignments = Array.new %>
+  <% assignments_employees_stores.each do |collection| %>
+    <% collection.each do |assignment| %>
+      <% all_assignments << assignment %>
+    <% end %> 
+  <% end %>
+
+
+
 <table class="striped">
   <thead>
     <tr>
@@ -14,17 +58,24 @@
     </tr>
   </thead>
 
+
+    <% if session[:role] == 'manager' %>
+    <% else %>
+      <% all_assignments = Assignment.all %>
+    <% end %>
   <tbody>
-    <% @assignments.each do |assignment| %>
+    <% all_assignments.each do |assignment| %>
       <tr>
         <td><%= assignment.start_date %></td>
         <td><%= assignment.end_date %></td>
         <td><%= assignment.pay_level %></td>
         <td><%= assignment.store.name %></td>
         <td><%= assignment.employee.first_name + " " + assignment.employee.last_name %></td>
-        <td><%= link_to 'Show', assignment, :class=> "waves-effect waves-light btn green" %></td>
-        <td><%= link_to 'Edit', edit_assignment_path(assignment), :class=> "waves-effect waves-light btn light-blue" %></td>
-        <td><%= link_to 'Destroy', assignment, method: :delete, data: { confirm: 'Are you sure?' }, :class=> "waves-effect waves-light btn red" %></td>
+        <% if session[:role] == 'admin' %>
+          <td><%= link_to 'Show', assignment, :class=> "waves-effect waves-light btn green" %></td>
+          <td><%= link_to 'Edit', edit_assignment_path(assignment), :class=> "waves-effect waves-light btn light-blue" %></td>
+          <td><%= link_to 'Destroy', assignment, method: :delete, data: { confirm: 'Are you sure?' }, :class=> "waves-effect waves-light btn red" %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

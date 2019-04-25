@@ -2,12 +2,12 @@
 
 <p>
   <strong>Shift:</strong>
-  <%= @shift_job.shift %>
+  <%= @shift_job.shift.assignment.assignment_name %>
 </p>
 
 <p>
   <strong>Job:</strong>
-  <%= @shift_job.job %>
+  <%= @shift_job.job.name %>
 </p>
 
 <%= link_to 'Edit', edit_shift_job_path(@shift_job) %> |

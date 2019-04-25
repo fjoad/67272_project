@@ -1,6 +1,15 @@
 <p>
-  <a class = "waves-effect waves-light btn cyan accent-3" href="<%= root_path %>">Home</a>&nbsp;&nbsp;::&nbsp;&nbsp;
-  <a class = "waves-effect waves-light btn cyan accent-3" href="<%= root_path %>">About Us</a>&nbsp;&nbsp;::&nbsp;&nbsp;
+  <% if !session[:user_id]  %>
+    <% link = root_path %>
+  <% elsif session[:role] == 'admin'%>
+    <% link = admin_page_index_path  %>
+  <% elsif session[:role] == 'manager' %>
+    <% link = manager_page_index_path %>
+  <% elsif session[:role] == 'employee' %>
+    <% link = employee_page_index_path %>
+  <% end %>
+  <a class = "waves-effect waves-light btn cyan accent-3" href="<%= link %>">Home</a>&nbsp;&nbsp;::&nbsp;&nbsp;
+  <a class = "waves-effect waves-light btn cyan accent-3" href="<%= page_mainpage_path %>">About Us</a>&nbsp;&nbsp;::&nbsp;&nbsp;
   <a class = "waves-effect waves-light btn cyan accent-3" href="mailto:A&MCreamery@icecream.com">Contact Us</a>&nbsp;&nbsp;::&nbsp;&nbsp;
   <a class = "waves-effect waves-light btn cyan accent-3" href="#top">Back to top</a>
 </p>

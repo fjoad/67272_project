@@ -44,7 +44,7 @@ $( document ).ready(function () {
 
  Materialize.updateTextFields(); //used so text fields dont clash in edit 
  $('.materialboxed').materialbox(); //used for images
- $('.parallax').parallax(); //used on the mainpage for the parallax images 
+ //$('.parallax').parallax(); //used on the mainpage for the parallax images 
 });
   
 

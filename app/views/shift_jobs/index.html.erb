@@ -2,6 +2,50 @@
 
 <h1>Shift Jobs</h1>
 
+<!--Find all the employees that work at the same store as the manager-->
+<% user = User.find(session[:user_id]) %>    
+<% manager = Employee.find(user.employee.id) %>
+<% manager_assignments = Assignment.for_employee(manager) %>
+<% manager_stores = Array.new  %>
+<% manager_assignments.each do |assignment| %>
+    <% manager_stores << Store.find(assignment.store_id) %>
+<% end %>
+<% assignments_store = Array.new %>
+<% manager_stores.each do |store| %>
+    <% assignments_store << Assignment.for_store(store) %>
+<% end %>
+<% employees_all = Array.new %>
+<% assignments_store.each do |assignment_relation| %>
+    <% assignment_relation.each do |assignment| %>
+        <% puts "Assignment_id:"%>
+        <% puts "#{assignment.id}"  %>
+        <% employees_all << Employee.find(assignment.employee_id) %>
+    <% end %>
+<% end %>    
+<% employees_regulars = Array.new %>
+<% employees_all.each do |employee| %>
+    <% if employee.role == 'employee' %>
+        <% employees_regulars << employee %>
+    <% end %>
+<% end %>
+
+<!--Now get all the shifts for these employees  -->
+<% all_shifts_relations = Array.new %>
+<% employees_regulars.each do |employee| %>
+  <% manager_stores.each do |store| %>
+      <% all_shifts_relations << Shift.for_store(store).for_employee(employee) %>
+  <% end %>
+<% end %>
+
+<!--Now get all the shift_jobs for these shifts  -->
+<% all_shift_jobs = Array.new %>
+<% all_shifts_relations.each do |relation| %>
+  <% relation.each do |shift| %>
+    <% all_shift_jobs << shift.shift_jobs %>
+  <% end %>
+<% end %>
+
+
 <table>
   <thead>
     <tr>
@@ -12,10 +56,20 @@
   </thead>
 
   <tbody>
-    <% @shift_jobs.each do |shift_job| %>
+    <% if session[:role] == 'manager' %>
+      <% all_shift_jobs_array = Array.new %>
+      <% all_shift_jobs.each do |relation| %>
+        <% relation.each do |shift_job| %>
+          <% all_shift_jobs_array << shift_job %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <% all_shift_jobs_array = @shift_jobs %>
+    <% end %>
+    <% all_shift_jobs_array.each do |shift_job| %>
       <tr>
-        <td><%= shift_job.shift %></td>
-        <td><%= shift_job.job %></td>
+        <td><%= shift_job.shift.assignment.assignment_name %></td>
+        <td><%= shift_job.job.name %></td>
         <td><%= link_to 'Show', shift_job %></td>
         <td><%= link_to 'Edit', edit_shift_job_path(shift_job) %></td>
         <td><%= link_to 'Destroy', shift_job, method: :delete, data: { confirm: 'Are you sure?' } %></td>

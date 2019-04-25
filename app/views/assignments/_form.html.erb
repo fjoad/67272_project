@@ -29,15 +29,46 @@
     <%= form.number_field :pay_level %>
   </div>
 
+
+    <% user = User.find(session[:user_id]) %>    
+    <% manager = Employee.find(user.employee.id) %>
+    <% manager_assignments = Assignment.for_employee(manager) %>
+    <% manager_stores = Array.new  %>
+    <% manager_assignments.each do |assignment| %>
+        <% manager_stores << Store.find(assignment.store_id) %>
+    <% end %>
+    <% assignments_store = Array.new %>
+    <% manager_stores.each do |store| %>
+        <% assignments_store << Assignment.for_store(store) %>
+    <% end %>
+    <% employees_all = Array.new %>
+    <% assignments_store.each do |assignment_relation| %>
+        <% assignment_relation.each do |assignment| %>
+            <% puts "Assignment_id:"%>
+            <% puts "#{assignment.id}"  %>
+            <% employees_all << Employee.find(assignment.employee_id) %>
+        <% end %>
+    <% end %>    
+    <% employees_regulars = Array.new %>
+    <% employees_all.each do |employee| %>
+        <% if employee.role == 'employee' %>
+            <% employees_regulars << employee %>
+        <% end %>
+    <% end %>
+  
   <!-- dropdowns for store and employee -->
   <div class="input-field">
     <%= form.label :store_id, class: "active" %>
-    <%= form.collection_select :store_id, Store.active.alphabetical, :id, :name, :prompt => "Select One" %>
+    <%  if session[:role] == 'manager' %>
+      <%= form.collection_select :store_id, manager_stores, :id, :name, :prompt => "Select One" %>
+    <% else %>
+      <%= form.collection_select :store_id, Store.active.alphabetical, :id, :name, :prompt => "Select One" %>
+    <% end %>  
   </div>
 
   <div class="input-field">
     <%= form.label :employee_id, class: "active" %>
-    <%= form.collection_select :employee_id, Employee.active.alphabetical, :id, :name, :prompt => "Select One" %>
+    <%= form.collection_select :employee_id, employees_regulars, :id, :name, :prompt => "Select One" %>
   </div>
 
   <div class="actions">

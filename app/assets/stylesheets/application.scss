@@ -17,6 +17,18 @@ html, body {
  !important;
 }
 
+body::after {
+  background: url(/assets/660.png);
+  content: "";
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: -1;
+}
+
 
 $table-striped-color: #cfd8dc; 
 $primary-color: #f762ad; 

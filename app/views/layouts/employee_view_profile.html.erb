@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>A&M Creamery</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    
+    
+    <!-- Navbar goes here -->
+  <nav>
+    <div class="nav-wrapper">
+      &nbsp&nbsp
+      <a href="#" class="sidenav-trigger" data-target="mobile-nav"></a>
+      <img id='logo' src="assets/AMCreamary_logo_eddited.png">
+      <a href="/" class="brand-logo">A&M Creamery</a>
+      <ul class="right">
+        <!-- Dropdown Trigger -->
+        <li><a class="dropdown-trigger" href="/employees" data-target="dropdown1"><i class="material-icons left">account_circle</i>Flavors<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-trigger" href="/stores" data-target="dropdown2"><i class="material-icons left">account_balance</i>Stores<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-trigger" href="/assignments" data-target="dropdown3"><i class="material-icons left">assignment</i>Jobs<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-button white-text" href=<%= logout_path %>>Logout<i class="material-icons left">exit_to_app</i></a></li>
+      </ul>
+
+     <!-- Dropdown Structure -->
+  <ul id="dropdown1" class="dropdown-content">
+    <li>
+      <%= link_to "List Flavors", flavors_path %>
+    </li>
+  </ul>
+  <ul id="dropdown2" class="dropdown-content">
+    <li>
+      <%= link_to "List Stores", stores_path %>
+    </li>
+  </ul>
+  <ul id="dropdown3" class="dropdown-content">
+    <li>
+      <%= link_to "List Jobs", jobs_path %>
+    </li>
+  </ul>
+</div>
+  </nav>
+
+    <div class="row" style="height:100%">
+      <div class="col s12 center" style="height:100%">
+        <!-- Teal page content  -->
+          <!-- MAIN CONTENT GOES HERE -->
+          <% user = User.find(session[:user_id]) %>
+          <% @employee = user.employee %>
+               <table class="highlight">
+        <tr>
+          <th>Name:</th>
+          <td><%= @employee.first_name + " " + @employee.last_name %></td>
+        </tr>
+        <tr>
+          <th>SSN:</th>
+          <td><%= @employee.ssn %></td>
+        </tr>
+        <tr>
+          <th>Phone: </th>
+          <td><%= @employee.phone %></td>
+        </tr>
+        <tr>
+          <th>Date of Birth: </th>
+          <td><%= @employee.date_of_birth %></td>
+        </tr>
+        <tr>
+          <th>Role: </th>
+          <td><%= @employee.role %></td>
+        </tr>
+        <tr>
+          <th>Active: </th>
+          <td><%= if @employee.active then "Active" else "Not Active" end %></td>
+        </tr>
+      </table>
+
+<%= link_to 'Edit', edit_employee_path(@employee), :class=>"btn waves-effect waves-light btn blue" %> |
+<%= link_to 'Back', employee_page_index_path, :class => 'waves-effect waves-light btn red' %>
+
+
+
+        </div>
+    </div>
+    
+
+    
+  <footer class="page-footer col s12 center" style="position:fixed;bottom:0;width:100%; padding:0">
+        <%= render partial: 'partials/footer' %>
+
+  </footer>
+</body>
+
+
+              <%= javascript_include_tag "application" %>
+           <% flash.each do |message_type, message| %>
+           <%= message %>
+           <% end %>
+           
+</html>

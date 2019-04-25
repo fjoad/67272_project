@@ -1,0 +1,2 @@
+module LoginpagesHelper
+end

@@ -1,9 +1,9 @@
 module AssignmentsHelper
-    def assignment_for_select
+    def assignment_for_select_for_admin
         Assignment.chronological.collect { |a| [a.employee.first_name + " " + a.employee.last_name + ", " + a.store.name, a.id] }
     end
     
-    def assignment_for_select(user_id)
+    def assignment_for_select_for_manager(user_id)
         user = User.find(user_id)
         manager = Employee.find(user.employee.id)
         manager_assignments = Assignment.for_employee(manager)

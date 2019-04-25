@@ -1,0 +1,58 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Store Flavors</h1>
+
+<!--Find all the employees that work at the same store as the manager-->
+<% user = User.find(session[:user_id]) %>    
+<% manager = Employee.find(user.employee.id) %>
+<% manager_assignments = Assignment.for_employee(manager) %>
+<% manager_stores = Array.new  %>
+<% manager_assignments.each do |assignment| %>
+    <% manager_stores << Store.find(assignment.store_id) %>
+<% end %>
+
+
+<!--Now get all the store_flavors for these stores for these shifts  -->
+<% all_store_flavors = Array.new %>
+<% manager_stores.each do |store| %>
+  <% all_store_flavors << store.store_flavors %>
+<% end %>
+
+<!--put in array  -->
+<% all_store_flavors_array = Array.new %>
+<% all_store_flavors.each do |relation|  %>
+  <% relation.each do |store_flavor|  %>
+    <%  all_store_flavors_array << store_flavor %>
+  <% end %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Store</th>
+      <th>Flavor</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+
+    <% if session[:role] == 'manager' %>
+    <% else %>
+      <% all_store_flavors_array = @store_flavors %>
+    <% end %>
+  <tbody>
+    <% all_store_flavors_array.each do |store_flavor| %>
+      <tr>
+        <td><%= store_flavor.store.name %></td>
+        <td><%= store_flavor.flavor.name %></td>
+        <td><%= link_to 'Show', store_flavor %></td>
+        <td><%= link_to 'Edit', edit_store_flavor_path(store_flavor) %></td>
+        <td><%= link_to 'Destroy', store_flavor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Store Flavor', new_store_flavor_path %>

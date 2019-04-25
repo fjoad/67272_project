@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  StoreFlavor: MyString
+  store: one
+  flavor: one
+
+two:
+  StoreFlavor: MyString
+  store: two
+  flavor: two

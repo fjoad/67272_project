@@ -26,4 +26,8 @@
       </table>
 
 <%= link_to 'Edit', edit_employee_path(@employee), :class=>"btn waves-effect waves-light btn blue" %> |
-<%= link_to 'Back', employees_path, :class => 'waves-effect waves-light btn red' %>
+<% if session[:role] == 'employee'  %>
+  <%= link_to 'Back', employee_page_index_path, :class => 'waves-effect waves-light btn red' %>
+<% else  %>
+   <%= link_to 'Back', employees_path, :class => 'waves-effect waves-light btn red' %>
+<% end %>

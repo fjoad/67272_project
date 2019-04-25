@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>A&M Creamery</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    
+    
+    <!-- Navbar goes here -->
+  <nav>
+    <div class="nav-wrapper">
+      &nbsp&nbsp
+      <a href="#" class="sidenav-trigger" data-target="mobile-nav"></a>
+      <img id='logo' src="assets/AMCreamary_logo_eddited.png">
+      <a href="#" class="brand-logo">A&M Creamery</a>
+      <ul class="right">
+        <!-- Dropdown Trigger -->
+          <% if !session[:user_id]  %>
+            <% loglink = loginpages_path %>
+            <% log = "Login" %> 
+          <% else %>
+            <% loglink = logout_path  %>
+            <% log = "Logout" %> 
+          <% end %>
+        <li><a class="dropdown-button white-text" href=<%= loglink %>><%=log%><i class="material-icons left">exit_to_app</i></a></li>
+      </ul>
+
+     <!-- Dropdown Structure -->
+  <ul id="dropdown1" class="dropdown-content">
+    <li>
+      <%= link_to "List Employees", employees_path %>
+    </li>
+    <li>
+      <%= link_to "Add an Employee", new_employee_path %>
+    </li>
+  </ul>
+  <ul id="dropdown2" class="dropdown-content">
+    <li>
+      <%= link_to "List Stores", stores_path %>
+    </li>
+    <li>
+      <%= link_to "Add a Store", new_store_path %>
+    </li>
+  </ul>
+  <ul id="dropdown3" class="dropdown-content">
+    <li>
+      <%= link_to "List Assignments", assignments_path %>
+    </li>
+    <li>
+      <%= link_to "Add an Assignment", new_assignment_path %>
+    </li>
+  </ul>
+</div>
+  </nav>
+    <div class="container">
+    <div class="row" style="height:100%">
+      <div class="col s12 center" style="height:100%">
+        <!-- Teal page content  -->
+          <!-- MAIN CONTENT GOES HERE -->
+          
+        <%= form_for(:demo, url: demos_path) do |f| %>
+        <h2 id="heading">Login to the HUB</h2>
+        <table border="0" cellspacing="5" cellpadding="5">
+            <tr valign="top">
+          		<td>
+          		    <div class="input-field">
+                        <%= f.label :email, :class=> "active heading" %>
+                        <%= f.text_field :email %>
+                    </div>
+                    
+                    <div class="input-field">
+                        <%= f.label :password, :class=>"validate active heading" %>
+                        <%= f.password_field :password %>
+                    </div>
+                    
+                    
+                    <div class="actions center-align">
+                        <%= f.submit "Login", class: "waves-effect waves-red deep-orange darken-4 hoverable btn white-text" %>
+                    </div>
+                    
+                    <% end %>
+                </td>
+            </tr>
+        </table>
+        
+        </break>
+        <h3>For Guests, please feel free to browze the rest of the website!</h3>
+        
+        </div>
+        <div class="col s6 center" >
+            <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Check Out Some of our Awesome Flavors!</span>
+          <p>We make the absolute best ice cream in the world. Our selection may be limited, but that's because we try to being each flavor to its maximum potential.
+              Our selection includes the best of the best, all natural, classic flavors enjoyable for people of all ages and backgrounds. Feel free to browze them!</p>
+        </div>
+        <div class="card-action">
+          <a href="/guest_flavor_view/index">View Flavors</a>
+        </div>
+      </div>
+        </div>
+        <div class="col s6 center" >
+            <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Find Out Where You Can Get Our Delicious Ice-Cream</span>
+          <p>We have many stores all over the country and are looking to open new stores as well. Please have a look at our current locations so that 
+              you know where to go to get the best ice cream in the world. Don't worry if you don't see your location yet. If you would like a store near you, send us an email!</p>
+        </div>
+        <div class="card-action">
+          <a href="/guest_flavor_store/index">View Stores</a>
+
+        </div>
+      </div>
+        </div>
+    </div>
+    </div>
+    
+
+    
+  <footer class="page-footer col s12 center" style="position:fixed;bottom:0;width:100%; padding:0">
+        <%= render partial: 'partials/footer' %>
+
+  </footer>
+</body>
+
+
+              <%= javascript_include_tag "application" %>
+           <% flash.each do |message_type, message| %>
+           <%= message %>
+           <% end %>
+           
+</html>

@@ -18,12 +18,9 @@
       &nbsp&nbsp
       <a href="#" class="sidenav-trigger" data-target="mobile-nav"></a>
       <img id='logo' src="assets/AMCreamary_logo_eddited.png">
-      <a href="/" class="brand-logo">A&M Creamery</a>
+      <a href="#" class="brand-logo">A&M Creamery</a>
       <ul class="right">
         <!-- Dropdown Trigger -->
-        <li><a class="dropdown-trigger" href="/employees" data-target="dropdown1"><i class="material-icons left">account_circle</i>Employees<i class="material-icons right">arrow_drop_down</i></a></li>
-        <li><a class="dropdown-trigger" href="/stores" data-target="dropdown2"><i class="material-icons left">account_balance</i>Stores<i class="material-icons right">arrow_drop_down</i></a></li>
-        <li><a class="dropdown-trigger" href="/assignments" data-target="dropdown3"><i class="material-icons left">assignment</i>Assignments<i class="material-icons right">arrow_drop_down</i></a></li>
         <li><a class="dropdown-button white-text" href=<%= logout_path %>>Logout<i class="material-icons left">exit_to_app</i></a></li>
       </ul>
 
@@ -56,16 +53,13 @@
   </nav>
 
     <div class="row" style="height:100%">
-    <div class="col s2 left teal lighten-2" style="height:100%">
-    <a href="">link</a>
-    </div>
-      <div class="col s10 right teal lighten-2" style="height:100%">
+      <div class="col s12 center" style="height:100%">
         <!-- Teal page content  -->
           <!-- MAIN CONTENT GOES HERE -->
           <!-- flash messages -->
                 <%= yield %>
 
-      </div>
+        </div>
     </div>
     
 
