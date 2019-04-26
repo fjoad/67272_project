@@ -1,3 +1,4 @@
+<div class="container center">
 <p id="notice"><%= notice %></p>
 
 <h1>Shift Jobs</h1>
@@ -88,9 +89,9 @@
         <td><%= shift_job.shift.assignment.assignment_name %></td>
         <td><%= shift_job.job.name %></td>
         <% if session[:role] != 'employee' %> 
-          <td><%= link_to 'Show', shift_job %></td>
-          <td><%= link_to 'Edit', edit_shift_job_path(shift_job) %></td>
-          <td><%= link_to 'Destroy', shift_job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Show', shift_job, :class=> "waves-effect waves-light btn green" %></td>
+          <td><%= link_to 'Edit', edit_shift_job_path(shift_job), :class=> "waves-effect waves-light btn light-blue" %></td>
+          <td><%= link_to 'Destroy', shift_job, method: :delete, data: { confirm: 'Are you sure?' }, :class=> "waves-effect waves-light btn red" %></td>
         <% end %>
       </tr>
     <% end %>
@@ -100,5 +101,7 @@
 <br>
 
 <% if session[:role] != 'employee' %> 
-<%= link_to 'New Shift Job', new_shift_job_path %>
+<%= link_to 'New Shift Job', new_shift_job_path, :class=> "waves-effect waves-light btn teal center" %>
+<br/><br/>
 <% end %>
+</div>

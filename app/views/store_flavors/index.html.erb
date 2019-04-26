@@ -1,3 +1,4 @@
+<div class="container center">
 <p id="notice"><%= notice %></p>
 
 <h1>Store Flavors</h1>
@@ -45,14 +46,16 @@
       <tr>
         <td><%= store_flavor.store.name %></td>
         <td><%= store_flavor.flavor.name %></td>
-        <td><%= link_to 'Show', store_flavor %></td>
-        <td><%= link_to 'Edit', edit_store_flavor_path(store_flavor) %></td>
-        <td><%= link_to 'Destroy', store_flavor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', store_flavor, :class=> "waves-effect waves-light btn green" %></td>
+        <td><%= link_to 'Edit', edit_store_flavor_path(store_flavor), :class=> "waves-effect waves-light btn light-blue" %></td>
+        <td><%= link_to 'Destroy', store_flavor, method: :delete, data: { confirm: 'Are you sure?' }, :class=> "waves-effect waves-light btn red" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Store Flavor', new_store_flavor_path %>
+<% if session[:role] != 'employee' %> 
+<%= link_to 'New Store Flavor', new_store_flavor_path, :class=> "waves-effect waves-light btn teal center" %>
+<% end %>
+</div>

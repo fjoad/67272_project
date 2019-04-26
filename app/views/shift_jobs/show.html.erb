@@ -1,4 +1,6 @@
+<div class="container center"
 <p id="notice"><%= notice %></p>
+<h2>Shift Job Details</h2>
 
 <p>
   <strong>Shift:</strong>
@@ -10,5 +12,6 @@
   <%= @shift_job.job.name %>
 </p>
 
-<%= link_to 'Edit', edit_shift_job_path(@shift_job) %> |
-<%= link_to 'Back', shift_jobs_path %>
+<%= link_to 'Edit', edit_shift_job_path(@shift_job), :class=> "waves-effect waves-light btn light-blue" %> |
+<%= link_to 'Back', shift_jobs_path, :class=> "waves-effect waves-light btn red" %>
+</div>

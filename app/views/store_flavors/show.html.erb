@@ -1,4 +1,6 @@
+<div class="container center">
 <p id="notice"><%= notice %></p>
+<h2>Store Flavor Details</h2>
 
 <p>
   <strong>Store:</strong>
@@ -10,5 +12,6 @@
   <%= @store_flavor.flavor.name %>
 </p>
 
-<%= link_to 'Edit', edit_store_flavor_path(@store_flavor) %> |
-<%= link_to 'Back', store_flavors_path %>
+<%= link_to 'Edit', edit_store_flavor_path(@store_flavor), :class=> "waves-effect waves-light btn light-blue" %> |
+<%= link_to 'Back', store_flavors_path, :class=> "waves-effect waves-light btn red" %>
+</div>

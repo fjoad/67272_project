@@ -85,6 +85,10 @@
   </tbody>
 </table>
 <br/>
+<% if session[:role] == 'admin' %> 
+<%= link_to 'New Assignment', new_assignment_path, :class=> "waves-effect waves-light btn teal center" %>
+<br/><br/>
+<% end %>
 <!-- Add the pagination using will_paginate gem -->
 <span class="paginate">
 <%= will_paginate @assignments, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
