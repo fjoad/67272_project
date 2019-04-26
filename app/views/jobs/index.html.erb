@@ -1,3 +1,4 @@
+<div class="container center">
 <p id="notice"><%= notice %></p>
 
 <h1>Jobs</h1>
@@ -18,16 +19,19 @@
         <td><%= job.name %></td>
         <td><%= job.description %></td>
         <td><%= job.active %></td>
-        <% if session[:role] == 'admin'  %>
-          <td><%= link_to 'Show', job %></td>
-          <td><%= link_to 'Edit', edit_job_path(job) %></td>
-          <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end  %>
+        <% if session[:role] == 'admin' %>
+          <td><%= link_to 'Show', job, :class=> "waves-effect waves-light btn green" %></td>
+          <td><%= link_to 'Edit', edit_job_path(job), :class=> "waves-effect waves-light btn light-blue" %></td>
+          <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' }, :class=> "waves-effect waves-light btn red" %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Job', new_job_path %>
+<% if session[:role] == 'admin' %>
+  <%= link_to 'New Job', new_job_path, :class=> "waves-effect waves-light btn teal center" %>
+<% end %>
+<br/><br/>
+</div>

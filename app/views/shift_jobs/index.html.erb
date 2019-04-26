@@ -46,6 +46,21 @@
 <% end %>
 
 
+<% employee = user.employee %>
+<% shift_employee = Shift.for_employee(employee) %>
+<% shift_jobs_employee = Array.new %> 
+<% shift_employee.each do |shift| %>
+  <% shift_jobs_employee << shift.shift_jobs %>
+<% end %>
+<% array = Array.new %>
+  <% shift_jobs_employee.each do |collection_proxy| %> 
+    <% collection_proxy.each do |shift_job| %>
+      <% array << shift_job %>
+  <% end %>
+<% end %>
+
+
+
 <table>
   <thead>
     <tr>
@@ -63,16 +78,20 @@
           <% all_shift_jobs_array << shift_job %>
         <% end %>
       <% end %>
+    <% elsif session[:role] == 'employee' %>
+      <% all_shift_jobs_array = array %>
     <% else %>
-      <% all_shift_jobs_array = @shift_jobs %>
+      <% all_shift_jobs_array = ShiftJob.all %>
     <% end %>
     <% all_shift_jobs_array.each do |shift_job| %>
       <tr>
         <td><%= shift_job.shift.assignment.assignment_name %></td>
         <td><%= shift_job.job.name %></td>
-        <td><%= link_to 'Show', shift_job %></td>
-        <td><%= link_to 'Edit', edit_shift_job_path(shift_job) %></td>
-        <td><%= link_to 'Destroy', shift_job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if session[:role] != 'employee' %> 
+          <td><%= link_to 'Show', shift_job %></td>
+          <td><%= link_to 'Edit', edit_shift_job_path(shift_job) %></td>
+          <td><%= link_to 'Destroy', shift_job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -80,4 +99,6 @@
 
 <br>
 
+<% if session[:role] != 'employee' %> 
 <%= link_to 'New Shift Job', new_shift_job_path %>
+<% end %>

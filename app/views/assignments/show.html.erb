@@ -1,6 +1,10 @@
 <div class="container center">
-  <h1 class="center"><%= @assignment.assignment_name %></h1>
+  <h1 class="center">Assignment Details</h1>
       <table class="highlight">
+        <tr>
+          <th class="center">name:</th>
+          <td class="center"><%= @assignment.assignment_name %></td>
+        </tr>
         <tr>
           <th class="center">Start date:</th>
           <td class="center"><%= @assignment.start_date %></td>

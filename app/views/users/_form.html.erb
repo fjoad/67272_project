@@ -5,11 +5,11 @@
 
   <div class="form-inputs">
   <div class="input-field">
-    <%= form.label :email, class: "active" %>
-    <%= form.text_field :email %>
+    <%= f.label :email, class: "active" %>
+    <%= f.text_field :email %>
   </div>
     <%= f.input :password_digest %>
-    <%= f.association :Employee %>
+    <%= f.association :employee %>
   </div>
 
   <div class="form-actions">

@@ -35,29 +35,26 @@
 
       <div class="col s4">
         <!-- Promo Content 1 goes here -->
-        <div class="card blue-grey darken-1 large">
+        <div class="card blue-grey darken-1 small">
             <div class="card-content white-text">
-              <span class="card-title">Card Title</span>
-              <p>I am a very simple card. I am good at containing small bits of information.
-              I am convenient because I require little markup to use effectively.</p>
+              <span class="card-title">Assignment</span>
+              <p></p>
             </div>
             <div class="card-action">
-              <a href="#">This is a link</a>
-              <a href="#">This is a link</a>
+              <a href=<%= assignments_path %>>View Assignments</a>
             </div>
           </div>
       </div>
       <div class="col s4">
         <!-- Promo Content 2 goes here -->
-        <div class="card blue-grey darken-1 large">
+        <div class="card blue-grey darken-1 small">
             <div class="card-content white-text">
-              <span class="card-title">Card Title</span>
-              <p>I am a very simple card. I am good at containing small bits of information.
-              I am convenient because I require little markup to use effectively.</p>
+              <span class="card-title">Shift/Shift Jobs</span>
+              <p></p>
             </div>
             <div class="card-action">
-              <a href="#">This is a link</a>
-              <a href="#">This is a link</a>
+              <a href=<%= shifts_path %>>View Shifts</a>
+              <a href=<%= shift_jobs_path %>>View Shift Jobs</a>
             </div>
           </div>
       </div>
@@ -70,6 +67,8 @@
             </div>
             <div class="card-action">
               <a href="https://test-project-fjoad.c9users.io/employee_view_profile/index">Profile</a>
+              <% user = User.find(session[:user_id]) %>
+              <a href=<%= user_path(user) %>>Login Details</a>
             </div>
           </div>
       </div>

@@ -1,19 +1,24 @@
+<div class="container center">
+  <h2 class="center">Job Details</h2>
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong class="center">Name:</strong>
   <%= @job.name %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong class="center">Description:</strong>
   <%= @job.description %>
 </p>
 
 <p>
-  <strong>Active:</strong>
+  <strong class="center">Active:</strong>
   <%= @job.active %>
 </p>
-
-<%= link_to 'Edit', edit_job_path(@job) %> |
-<%= link_to 'Back', jobs_path %>
+<br/>
+<%= link_to 'Edit', edit_job_path(@job), :class=> "waves-effect waves-light btn light-blue" %> |
+<%= link_to 'Back', jobs_path, :class=> "waves-effect waves-light btn red" %>
+<br/>
+<br/>
+</div>

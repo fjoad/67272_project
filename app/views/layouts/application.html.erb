@@ -32,7 +32,7 @@
           <!-- flash messages -->
           <%= javascript_include_tag "application" %>
            <% flash.each do |message_type, message| %>
-           <% error = "error: " %>
+           <% error = "message: " %>
            <h2 class="center"><%=error%><%= message %></h2>
            <% end %>
                 <%= yield %>

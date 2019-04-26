@@ -31,7 +31,7 @@
               <br/>
               <br/>
     <div class = "row">
-      <div class="col s3 push-s6 center" >
+      <div class="col s2 push-s5 center" >
         <div class="card blue-grey darken-1">
         <div class="card-content white-text">
           <span class="card-title">Shifts</span>
@@ -44,7 +44,7 @@
       </div>
       </div>
       
-      <div class="col s3 center" >
+      <div class="col s2 center" >
         <div class="card blue-grey darken-1">
         <div class="card-content white-text">
           <span class="card-title">Jobs</span>
@@ -56,9 +56,22 @@
         </div>
       </div>
       </div>
+      
+        <div class="col s2 push-s4 center" >
+        <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Shift Jobs</span>
+          <p></p>
+        </div>
+        <div class="card-action">
+          <a href="/shift_jobs">List Shifts Jobs</a>
+          <a href="/shift_jobs/new">Create Shift Jobs</a>
+        </div>
+      </div>
+      </div>
     </div>
     <div class = "row">
-      <div class="col s3 push-s6 center" >
+      <div class="col s2 push-s5 center" >
         <div class="card blue-grey darken-1">
         <div class="card-content white-text">
           <span class="card-title">Flavors</span>
@@ -71,7 +84,7 @@
       </div>
       </div>
       
-      <div class="col s3 center" >
+      <div class="col s2 center" >
         <div class="card blue-grey darken-1">
         <div class="card-content white-text">
           <span class="card-title">View Profile</span>
@@ -81,11 +94,26 @@
           <% user = User.find(session[:user_id]) %>
           <% emp_id = user.employee.id %>
           <a href=" /employees/<%=emp_id%>">Profile</a>
+          <a href=<%= user_path(user) %>>Login Details</a>
         </div>
       </div>
       </div>
-    </div>
+      
+              <div class="col s2 push-s4 center" >
+        <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Store Flavors</span>
+          <p></p>
+        </div>
+        <div class="card-action">
+          <a href="/store_flavors">List Store Flavors</a>
+          <a href="/store_flavors/new">Create Store Flavors</a>
+        </div>
       </div>
+      </div>
+    
+    </div>
+    </div>
     </div>
     
 

@@ -1,3 +1,4 @@
+<div class="container center">
 <p id="notice"><%= notice %></p>
 
 <h1>Shifts</h1>
@@ -38,7 +39,8 @@
   <% end %>
 <% end %>
 
-
+<% employee = user.employee %>
+<% shifts_employee = Shift.for_employee(employee) %>
 
 
 <table>
@@ -61,6 +63,8 @@
           <% role_shifts << shift %>
         <% end %>
       <% end %>
+    <% elsif session[:role] == 'employee' %>
+      <% role_shifts = shifts_employee %>
     <% else %>
       <% role_shifts = @shifts %>
     <% end %>
@@ -71,9 +75,11 @@
         <td><%= shift.end_time.strftime("%I:%m %p") if shift.end_time != nil %></td>
         <td><%= shift.notes %></td>
         <td><%= shift.assignment.assignment_name %></td>
-        <td><%= link_to 'Show', shift %></td>
-        <td><%= link_to 'Edit', edit_shift_path(shift) %></td>
-        <td><%= link_to 'Destroy', shift, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if session[:role] != 'employee' %>
+          <td><%= link_to 'Show', shift, :class=> "waves-effect waves-light btn green" %></td>
+          <td><%= link_to 'Edit', edit_shift_path(shift), :class=> "waves-effect waves-light btn light-blue" %></td>
+          <td><%= link_to 'Destroy', shift, method: :delete, data: { confirm: 'Are you sure?' }, :class=> "waves-effect waves-light btn red" %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -81,5 +87,8 @@
 
 
 <br>
-
-<%= link_to 'New Shift', new_shift_path %>
+<% if session[:role] == 'admin' || session[:role] == 'manager' %>
+  <%= link_to 'New Shift', new_shift_path, :class=> "waves-effect waves-light btn teal center" %>
+<% end %>
+<br/><br/>
+</div>

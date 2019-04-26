@@ -3,5 +3,5 @@ class StoreFlavor < ApplicationRecord
   belongs_to :flavor
   
   validates_presence_of :store_id, :flavor_id
-  validates_uniqueness_of :store_id, :flavor_id
+  #validates_uniqueness_of :store_id, :flavor_id
 end

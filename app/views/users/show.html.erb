@@ -1,3 +1,5 @@
+<div class="center">
+  <h2 class = "center">Login Details</h2>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -7,13 +9,13 @@
 
 <p>
   <strong>Password digest:</strong>
-  <%= @user.password_digest %>
+  Don't worry, we don't store your plain text passwords!
 </p>
 
-<p>
-  <strong>Employee:</strong>
-  <%= @user.employee %>
-</p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<br/>
+<% user = User.find(session[:user_id]) %>
+<% employee = user.employee %>
+<%= link_to 'change login details', edit_employee_path(employee), :class=> "waves-effect waves-light btn light-blue" %>
+<br/><br/>
+</div>
