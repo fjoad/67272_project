@@ -1,3 +1,4 @@
+<div class= "container center">
 <!--base assignment form -->
 <%= form_with(model: assignment, local: true) do |form| %>
   <% if assignment.errors.any? %>
@@ -68,11 +69,19 @@
 
   <div class="input-field">
     <%= form.label :employee_id, class: "active" %>
-    <%= form.collection_select :employee_id, employees_regulars, :id, :name, :prompt => "Select One" %>
+    <%  if session[:role] == 'manager' %>
+      <%= form.collection_select :employee_id, employees_regulars, :id, :name, :prompt => "Select One" %>
+    <% else %>
+      <%= form.collection_select :employee_id, Employee.active.alphabetical, :id, :name, :prompt => "Select One" %>
+    <% end %> 
   </div>
-
+  
   <div class="actions">
+    <br/>
     <%= form.submit :class=>"btn waves-effect waves-light" %>
     <%= link_to 'Cancel', assignments_path, :class => 'waves-effect waves-light btn red' %>
+    <br/>
   </div>
+  <br/><br/>
 <% end %>
+</div>

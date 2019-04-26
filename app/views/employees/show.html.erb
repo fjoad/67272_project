@@ -1,33 +1,34 @@
+      <div class="container center">
+      <h1 class="center"><%= @employee.first_name + " " + @employee.last_name %></h1>
+      
       <table class="highlight">
         <tr>
-          <th>Name:</th>
-          <td><%= @employee.first_name + " " + @employee.last_name %></td>
+          <th class="center">SSN:</th>
+          <td class="center"><%= @employee.ssn %></td>
         </tr>
         <tr>
-          <th>SSN:</th>
-          <td><%= @employee.ssn %></td>
+          <th class="center">Phone: </th>
+          <td class="center"><%= @employee.phone %></td>
         </tr>
         <tr>
-          <th>Phone: </th>
-          <td><%= @employee.phone %></td>
+          <th class="center">Date of Birth: </th>
+          <td class="center"><%= @employee.date_of_birth %></td>
         </tr>
         <tr>
-          <th>Date of Birth: </th>
-          <td><%= @employee.date_of_birth %></td>
+          <th class="center">Role: </th>
+          <td class="center"><%= @employee.role %></td>
         </tr>
         <tr>
-          <th>Role: </th>
-          <td><%= @employee.role %></td>
-        </tr>
-        <tr>
-          <th>Active: </th>
-          <td><%= if @employee.active then "Active" else "Not Active" end %></td>
+          <th class="center">Active: </th>
+          <td class="center"><%= if @employee.active then "Active" else "Not Active" end %></td>
         </tr>
       </table>
-
+<br/>
 <%= link_to 'Edit', edit_employee_path(@employee), :class=>"btn waves-effect waves-light btn blue" %> |
 <% if session[:role] == 'employee'  %>
   <%= link_to 'Back', employee_page_index_path, :class => 'waves-effect waves-light btn red' %>
 <% else  %>
    <%= link_to 'Back', employees_path, :class => 'waves-effect waves-light btn red' %>
 <% end %>
+</div>
+<br/><br/>

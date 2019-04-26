@@ -1,3 +1,4 @@
+<div class= "container center">
 <%= form_with(model: store, local: true) do |form| %>
   <% if store.errors.any? %>
     <div id="error_explanation">
@@ -28,7 +29,7 @@
 
   <div class="input-field">
     <%= form.label :state, class: "active" %>
-    <%= form.text_field :state %>
+    <%= form.select :state, options_for_select([['Ohio', 'OH'],['Pennsylvania', 'PA'],['West Virginia', 'WV']]), :prompt => "Select One" %>
   </div>
 
   <div class="input-field">
@@ -58,6 +59,9 @@
 
   <div class="actions">
     <%= form.submit :class=>"btn waves-effect waves-light" %>
-    <%= link_to 'Cancel', assignments_path, :class => 'waves-effect waves-light btn red' %>
+    <%= link_to 'Cancel', stores_path, :class => 'waves-effect waves-light btn red' %>
   </div>
 <% end %>
+<br/>
+</div>
+

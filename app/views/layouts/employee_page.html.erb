@@ -14,36 +14,15 @@
     
     <!-- Navbar goes here -->
   <nav>
-    <div class="nav-wrapper">
-      &nbsp&nbsp
-      <a href="#" class="sidenav-trigger" data-target="mobile-nav"></a>
-      <img id='logo' src="assets/AMCreamary_logo_eddited.png">
-      <a href="/" class="brand-logo">A&M Creamery</a>
-      <ul class="right">
-        <!-- Dropdown Trigger -->
-        <li><a class="dropdown-trigger" href="/employees" data-target="dropdown1"><i class="material-icons left">account_circle</i>Flavors<i class="material-icons right">arrow_drop_down</i></a></li>
-        <li><a class="dropdown-trigger" href="/stores" data-target="dropdown2"><i class="material-icons left">account_balance</i>Stores<i class="material-icons right">arrow_drop_down</i></a></li>
-        <li><a class="dropdown-trigger" href="/assignments" data-target="dropdown3"><i class="material-icons left">assignment</i>Jobs<i class="material-icons right">arrow_drop_down</i></a></li>
-        <li><a class="dropdown-button white-text" href=<%= logout_path %>>Logout<i class="material-icons left">exit_to_app</i></a></li>
-      </ul>
-
-     <!-- Dropdown Structure -->
-  <ul id="dropdown1" class="dropdown-content">
-    <li>
-      <%= link_to "List Flavors", flavors_path %>
-    </li>
-  </ul>
-  <ul id="dropdown2" class="dropdown-content">
-    <li>
-      <%= link_to "List Stores", stores_path %>
-    </li>
-  </ul>
-  <ul id="dropdown3" class="dropdown-content">
-    <li>
-      <%= link_to "List Jobs", jobs_path %>
-    </li>
-  </ul>
-</div>
+  <nav>
+    <% if session[:role] == 'admin' %>
+      <%= render partial: 'partials/admin_nav' %>
+    <% elsif session[:role] == 'manager'  %>
+      <%= render partial: 'partials/manager_nav' %>
+    <% else %>
+      <%= render partial: 'partials/employee_nav' %>
+    <% end  %>
+  </nav>
   </nav>
 
     <div class="row" style="height:100%">

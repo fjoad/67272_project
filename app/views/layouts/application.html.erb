@@ -14,66 +14,41 @@
     
     <!-- Navbar goes here -->
   <nav>
-    <div class="nav-wrapper">
-      &nbsp&nbsp
-      <a href="#" class="sidenav-trigger" data-target="mobile-nav"></a>
-      <img id='logo' src="assets/AMCreamary_logo_eddited.png">
-      <a href="#" class="brand-logo">A&M Creamery</a>
-      <ul class="right">
-        <!-- Dropdown Trigger -->
-        <li><a class="dropdown-button white-text" href=<%= logout_path %>>Logout<i class="material-icons left">exit_to_app</i></a></li>
-      </ul>
-
-     <!-- Dropdown Structure -->
-  <ul id="dropdown1" class="dropdown-content">
-    <li>
-      <%= link_to "List Employees", employees_path %>
-    </li>
-    <li>
-      <%= link_to "Add an Employee", new_employee_path %>
-    </li>
-  </ul>
-  <ul id="dropdown2" class="dropdown-content">
-    <li>
-      <%= link_to "List Stores", stores_path %>
-    </li>
-    <li>
-      <%= link_to "Add a Store", new_store_path %>
-    </li>
-  </ul>
-  <ul id="dropdown3" class="dropdown-content">
-    <li>
-      <%= link_to "List Assignments", assignments_path %>
-    </li>
-    <li>
-      <%= link_to "Add an Assignment", new_assignment_path %>
-    </li>
-  </ul>
-</div>
+    <% if session[:role] == 'admin' %>
+      <%= render partial: 'partials/admin_nav' %>
+    <% elsif session[:role] == 'manager'  %>
+      <%= render partial: 'partials/manager_nav' %>
+    <% elsif session[:role] == 'employee' %>
+      <%= render partial: 'partials/employee_nav' %>
+    <% else  %>
+      <%= render partial: 'partials/guest_nav' %>
+    <% end  %>
   </nav>
 
-    <div class="row" style="height:100%">
-      <div class="col s12 center" style="height:100%">
+    <!--<div class="row" style="height:100%">-->
+    <!--  <div class="col s12 center" style="height:100%">-->
         <!-- Teal page content  -->
           <!-- MAIN CONTENT GOES HERE -->
           <!-- flash messages -->
+          <%= javascript_include_tag "application" %>
+           <% flash.each do |message_type, message| %>
+           <% error = "error: " %>
+           <h2 class="center"><%=error%><%= message %></h2>
+           <% end %>
                 <%= yield %>
 
-        </div>
-    </div>
+    <!--    </div>-->
+    <!--</div>-->
     
 
     
-  <footer class="page-footer col s12 center" style="position:fixed;bottom:0;width:100%; padding:0">
+  <footer class="page-footer col s12 center">
         <%= render partial: 'partials/footer' %>
 
   </footer>
 </body>
 
 
-              <%= javascript_include_tag "application" %>
-           <% flash.each do |message_type, message| %>
-           <%= message %>
-           <% end %>
+
            
 </html>

@@ -1,3 +1,6 @@
+<div class= "container">
+  <div class="row">
+    <div class="col s12 center">
 <%= form_with(model: employee, local: true) do |form| %>
   <% if employee.errors.any? %>
     <div id="error_explanation">
@@ -44,11 +47,15 @@
   </div>
   
   <%= form.fields_for :user do |field|%>
-    <%= field.label "Email" %>
+    <div class="input-field">
+    <%= field.label "Email", class: "active" %>
     <%= field.text_field :email %>
+    </div>
     
+    <div class="input-field">
     <%= field.label "Password" %>
     <%= field.password_field :password %>
+    </div>
   <% end %>
 
   <div class="input-field">
@@ -62,11 +69,14 @@
   </div>
 
   <div class="actions">
-    <%= form.submit :class=>"btn waves-effect waves-light" %>
+    <%= form.submit :class=>"btn waves-effect waves-light center" %>
     <% if session[:role] == 'employee'  %>
-      <%= link_to 'Cancel', employee_page_index_path, :class => 'waves-effect waves-light btn red' %>
+      <%= link_to 'Cancel', employee_page_index_path, :class => 'waves-effect waves-light btn red center' %>
     <% else  %>
-      <%= link_to 'Cancel', employees_path, :class => 'waves-effect waves-light btn red' %>
+      <%= link_to 'Cancel', employees_path, :class => 'waves-effect waves-light btn red center' %>
     <% end %>
   </div>
 <% end %>
+</div>
+</div>
+</div>

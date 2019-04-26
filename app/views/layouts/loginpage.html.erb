@@ -64,7 +64,15 @@
         <!-- Teal page content  -->
           <!-- MAIN CONTENT GOES HERE -->
           
+          
+
+          
         <%= form_for(:demo, url: demos_path) do |f| %>
+        <!--sources the javascript file and the stylesheet, also formats the toasts-->
+        <%= javascript_include_tag "application" %>
+        <% flash.each do |message_type, message| %>
+        <%= javascript_tag "Materialize.toast('#{message}', classes: 'rounded', 4000)" %>
+        <% end %>
         <h2 id="heading">Login to the HUB</h2>
         <table border="0" cellspacing="5" cellpadding="5">
             <tr valign="top">
@@ -130,9 +138,5 @@
 </body>
 
 
-              <%= javascript_include_tag "application" %>
-           <% flash.each do |message_type, message| %>
-           <%= message %>
-           <% end %>
            
 </html>

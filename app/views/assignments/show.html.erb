@@ -1,29 +1,33 @@
+<div class="container center">
+  <h1 class="center"><%= @assignment.assignment_name %></h1>
       <table class="highlight">
         <tr>
-          <th>Start date:</th>
-          <td><%= @assignment %></td>
+          <th class="center">Start date:</th>
+          <td class="center"><%= @assignment.start_date %></td>
         </tr>
         <tr>
-          <th>Start date:</th>
-          <td><%= @assignment.start_date %></td>
+          <th class="center">End date:</th>
+          <td class="center"><%= if @assignment.end_date.nil? then "This assignment is ongoing" else @assignment.end_date end %></td>
         </tr>
         <tr>
-          <th>End date:</th>
-          <td><%= if @assignment.end_date.nil? then "This assignment is ongoing" else @assignment.end_date end %></td>
+          <th class="center">Pay Level: </th>
+          <td class="center"><%= @assignment.pay_level %></td>
         </tr>
         <tr>
-          <th>Pay Level: </th>
-          <td><%= @assignment.pay_level %></td>
+          <th class="center">Store: </th>
+          <td class="center"><%= @assignment.store.name %></td>
         </tr>
         <tr>
-          <th>Store: </th>
-          <td><%= @assignment.store.name %></td>
-        </tr>
-        <tr>
-          <th>Employee: </th>
-          <td><%= @assignment.employee.first_name + " " + @assignment.employee.last_name %></td>
+          <th class="center">Employee: </th>
+          <td class="center"><%= @assignment.employee.first_name + " " + @assignment.employee.last_name %></td>
         </tr>
       </table>
+<br/>
 
 <%= link_to 'Edit', edit_assignment_path(@assignment), :class=>"btn waves-effect waves-light btn blue" %> |
 <%= link_to 'Back', assignments_path, :class => 'waves-effect waves-light btn red' %>
+<br/>
+<br/>
+<br/>
+<br/>
+</div>

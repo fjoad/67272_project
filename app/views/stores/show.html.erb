@@ -1,42 +1,45 @@
+<div class="container center">
+  <h2>Store Details</h2>
       <table class="highlight">
         <tr>
-          <th>Name:</th>
-          <td><%= @store.name %></td>
+          <th class="center">Name:</th>
+          <td class="center"><%= @store.name %></td>
         </tr>
         <tr>
-          <th>Street:</th>
-          <td><%= @store.street %></td>
+          <th class="center">Street:</th>
+          <td class="center"><%= @store.street %></td>
         </tr>
         <tr>
-          <th>City: </th>
-          <td><%= @store.city %></td>
+          <th class="center">City: </th>
+          <td class="center"><%= @store.city %></td>
         </tr>
         <tr>
-          <th>State: </th>
-          <td><%= @store.state %></td>
+          <th class="center">State: </th>
+          <td class="center"><%= @store.state %></td>
         </tr>
         <tr>
-          <th>Zip: </th>
-          <td><%= @store.zip %></td>
+          <th class="center">Zip: </th>
+          <td class="center"><%= @store.zip %></td>
         </tr>
         <tr>
-          <th>Phone: </th>
-          <td><%= @store.phone %></td>
+          <th class="center">Phone: </th>
+          <td class="center"><%= @store.phone %></td>
         </tr>
         <tr>
-          <th>Latitude: </th>
-          <td><%= @store.latitude %></td>
+          <th class="center">Latitude: </th>
+          <td class="center"><%= @store.latitude %></td>
         </tr>
         <tr>
-          <th>Longitude: </th>
-          <td><%= @store.longitude %></td>
+          <th class="center">Longitude: </th>
+          <td class="center"><%= @store.longitude %></td>
         </tr>
         <tr>
-          <th>Active: </th>
-          <td><%= if @store.active then "Active" else "Not Active" end %></td>
+          <th class="center">Active: </th>
+          <td class="center"><%= if @store.active then "Active" else "Not Active" end %></td>
         </tr>
       </table>
-
+<br/>
 <%= link_to 'Edit', edit_store_path(@store), :class=>"btn waves-effect waves-light btn blue" %> |
 <%= link_to 'Back', stores_path, :class => 'waves-effect waves-light btn red' %>
-
+<br/><br/>
+</div>

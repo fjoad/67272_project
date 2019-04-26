@@ -18,9 +18,11 @@
         <td><%= job.name %></td>
         <td><%= job.description %></td>
         <td><%= job.active %></td>
-        <td><%= link_to 'Show', job %></td>
-        <td><%= link_to 'Edit', edit_job_path(job) %></td>
-        <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if session[:role] == 'admin'  %>
+          <td><%= link_to 'Show', job %></td>
+          <td><%= link_to 'Edit', edit_job_path(job) %></td>
+          <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end  %>
       </tr>
     <% end %>
   </tbody>

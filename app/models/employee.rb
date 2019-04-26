@@ -98,7 +98,7 @@ class Employee < ApplicationRecord
    end
    
    def make_inactive 
-    self.update_attribute(:active, false)
+    self.update_attribute(:active, false) if self.valid?
    end
    
    def terminate_assignment
